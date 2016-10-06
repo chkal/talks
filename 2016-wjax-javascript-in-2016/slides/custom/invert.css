@@ -1,0 +1,37 @@
+body {
+  background: #E6E6E6;
+}
+
+.reveal {
+  color: black;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: black;
+}
+
+.reveal a {
+  color: #0000FF;
+}
+
+.reveal a:hover {
+  color: #6ca0e8;
+}
+
+.reveal h4.filename {
+  color: #4D4D4D;
+}
+
+.reveal img.invertible {
+  -webkit-filter: invert(0.9);
+  filter: invert(0.9);
+}
+
+.reveal .slides section .fragment.hl-current.current-fragment {
+  color: #0000FF;
+}

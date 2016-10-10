@@ -4,13 +4,20 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>TypeScript - das bessere JavaScript!?</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="custom/custom.css">
+		<!--
+    <link rel="stylesheet" href="custom/invert.css">
+    -->
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<!--
+    <link rel="stylesheet" href="custom/github.min.css">
+    -->
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -24,8 +31,59 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+
+				<section>
+					<h1>TypeScript</h1>
+					<h2>Das bessere JavaScript!?</h2>
+					<p>
+						<a href="http://blog.kaltepoth.de">Christian Kaltepoth</a> /
+						<a href="http://twitter.com/chkal">@chkal</a>
+					</p>
+					Slides:
+					<a href="http://bit.ly/wjax16-typescript">
+						http://bit.ly/wjax16-typescript
+					</a>
+				</section>
+
+				<section>
+					<h2>Christian Kaltepoth</h2>
+					<h2>Senior Developer @ ingenit</h2>
+					<p>
+						<a href="mailto:christian@kaltepoth.de">christian@kaltepoth.de</a> / <a href="https://twitter.com/chkal">@chkal</a>
+					</p>
+					<p>
+						<a href="http://blog.kaltepoth.de">http://blog.kaltepoth.de</a>
+					</p>
+					<aside class="notes" data-markdown>
+						<script type="text/template">
+							* ingenit
+							* Dortmund
+							* Webbasierte Unternehmensanw.
+							* Hinter Firewall
+							* Open Source
+						</script>
+					</aside>
+				</section>
+
+				<section>
+					<h1>Danke!</h1>
+					<h2>Fragen?</h2>
+					<div class="mono" style="margin-top: 6%;">
+						<a href="http://bit.ly/wjax16-typescript">
+							http://bit.ly/wjax16-typescript
+						</a>
+						<div class="mono" style="margin-top: 1%;">
+						</div>
+						<a href="https://github.com/chkal/frontend-boilerplate">
+							https://github.com/chkal/frontend-boilerplate
+						</a>
+					</div>
+					<div style="margin-top: 5%;">
+						<a href="http://blog.kaltepoth.de/">Christian Kaltepoth</a> /
+						<a href="http://twitter.com/chkal">@chkal</a>
+					</div>
+				</section>
+
 			</div>
 		</div>
 
@@ -35,7 +93,15 @@
 		<script>
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
+				controls: false,
+				progress: true,
 				history: true,
+				center: true,
+
+				overview: false,
+				slideNumber: true,
+				margin: 0.05,
+				transition: 'none', // none/fade/slide/convex/concave/zoom
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [

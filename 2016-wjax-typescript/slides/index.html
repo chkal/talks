@@ -1,69 +1,69 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>TypeScript - das bessere JavaScript!?</title>
+    <title>TypeScript - das bessere JavaScript!?</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
-		<link rel="stylesheet" href="custom/custom.css">
-		<!--
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="custom/custom.css">
+    <!--
     <link rel="stylesheet" href="custom/invert.css">
     -->
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-		<!--
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!--
     <link rel="stylesheet" href="custom/github.min.css">
     -->
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
 
-				<section>
-					<h1>TypeScript</h1>
-					<h2>Das bessere JavaScript!?</h2>
-					<p>
-						<a href="http://blog.kaltepoth.de">Christian Kaltepoth</a> /
-						<a href="http://twitter.com/chkal">@chkal</a>
-					</p>
-					Slides:
-					<a href="http://bit.ly/wjax16-typescript">
-						http://bit.ly/wjax16-typescript
-					</a>
-				</section>
+        <section>
+          <h1>TypeScript</h1>
+          <h2>Das bessere JavaScript!?</h2>
+          <p>
+            <a href="http://blog.kaltepoth.de">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </p>
+          Slides:
+          <a href="http://bit.ly/wjax16-typescript">
+            http://bit.ly/wjax16-typescript
+          </a>
+        </section>
 
-				<section>
-					<h2>Christian Kaltepoth</h2>
-					<h2>Senior Developer @ ingenit</h2>
-					<p>
-						<a href="mailto:christian@kaltepoth.de">christian@kaltepoth.de</a> / <a href="https://twitter.com/chkal">@chkal</a>
-					</p>
-					<p>
-						<a href="http://blog.kaltepoth.de">http://blog.kaltepoth.de</a>
-					</p>
-					<aside class="notes" data-markdown>
-						<script type="text/template">
-							* ingenit
-							* Dortmund
-							* Webbasierte Unternehmensanw.
-							* Hinter Firewall
-							* Open Source
-						</script>
-					</aside>
-				</section>
+        <section>
+          <h2>Christian Kaltepoth</h2>
+          <h2>Senior Developer @ ingenit</h2>
+          <p>
+            <a href="mailto:christian@kaltepoth.de">christian@kaltepoth.de</a> / <a href="https://twitter.com/chkal">@chkal</a>
+          </p>
+          <p>
+            <a href="http://blog.kaltepoth.de">http://blog.kaltepoth.de</a>
+          </p>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ingenit
+              * Dortmund
+              * Webbasierte Unternehmensanw.
+              * Hinter Firewall
+              * Open Source
+            </script>
+          </aside>
+        </section>
         
         <section>
           <h1>Why another JavaScript dialect?</h1>
@@ -81,40 +81,40 @@
         </section>
         
         <section>
-					<h2>JavaScript</h2>
+          <h2>JavaScript</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
 let n = 3;
           </code></pre>
-					<div class="fragment">
-					<h2>TypeScript</h2>
-						<pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+          <div class="fragment">
+          <h2>TypeScript</h2>
+            <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
 let n: number = 3;
-	          </code></pre>
-					</div>
+            </code></pre>
+          </div>
         </section>
 
         <section>
-					<h2>Types are great</h2>
+          <h2>Types are great</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 let n: number = 1;
 // > 1
-						
+            
 n = 2;
 // > 2
 
 n = "4";
 // Type 'string' is not assignable to type 'number'.
-					</code></pre>
+          </code></pre>
         </section>
-				
-				<section>
-					<h2>IDE support</h2>
-					<img src="images/intellij-error.png" alt="intellij" style="width: 100%;"/>
-				</section>
-				
-				<section>
-					<h2>Basic types</h2>
-					<pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+        
+        <section>
+          <h2>IDE support</h2>
+          <img src="images/intellij-error.png" alt="intellij" style="width: 100%;"/>
+        </section>
+        
+        <section>
+          <h2>Basic types</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
 // numbers
 let n: number = 42;
 
@@ -126,111 +126,111 @@ let b: boolean = true;
 
 // arrays
 let a: number[] = [ 1, 2, 4, 8 ];
-					</code></pre>
-				</section>
-				
-				<section>
-					<h2>Tuple</h2>
-					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Tuple</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
 let price: [ number, string ];
 
 price = [ 12.99, "EUR" ];
 // > OK
-	
+  
 price = [ "EUR", 12.99 ];
 // > Type '[string, number]' is not assignable 
 //   to type '[number, string]'.
-					</code></pre>
-				</section>
-				
-				<section>
-					<h2>Enum</h2>
-					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Enum</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
 enum Currency {
   EUR, USD, JPY, GBP 
 };
-						
+            
 let c: Currency = Currency.EUR;
-						
+            
 c = "FOOBAR";
 // > Property 'FOOBAR' does not exist on
 //   type 'typeof Currency'. 
-					</code></pre>
-				</section>
-				
-				<section>
-					<h2>Any</h2>
-					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Any</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
 let a: any;
-						
+            
 a = "Foobar";
-						
+            
 a = false;
-						
+            
 a = [ 42, "Foobar", true ];
-						
+            
 a = document.getElementById( "foobar" );
-					</code></pre>
-				</section>
-				
-				<section>
-					<h2>Functions</h2>
-					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Functions</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
 function formatEuro( value: number ): string {
-	return value.toFixed(2) + " €";
+  return value.toFixed(2) + " €";
 }
-						
+            
 formatEuro( 42 );
 // > "42.00 €"
-					</code></pre>
-				</section>
+          </code></pre>
+        </section>
 
-				<section>
-					<h1>Danke!</h1>
-					<h2>Fragen?</h2>
-					<div class="mono" style="margin-top: 6%;">
-						<a href="http://bit.ly/wjax16-typescript">
-							http://bit.ly/wjax16-typescript
-						</a>
-						<div class="mono" style="margin-top: 1%;">
-						</div>
-						<a href="https://github.com/chkal/frontend-boilerplate">
-							https://github.com/chkal/frontend-boilerplate
-						</a>
-					</div>
-					<div style="margin-top: 5%;">
-						<a href="http://blog.kaltepoth.de/">Christian Kaltepoth</a> /
-						<a href="http://twitter.com/chkal">@chkal</a>
-					</div>
-				</section>
+        <section>
+          <h1>Danke!</h1>
+          <h2>Fragen?</h2>
+          <div class="mono" style="margin-top: 6%;">
+            <a href="http://bit.ly/wjax16-typescript">
+              http://bit.ly/wjax16-typescript
+            </a>
+            <div class="mono" style="margin-top: 1%;">
+            </div>
+            <a href="https://github.com/chkal/frontend-boilerplate">
+              https://github.com/chkal/frontend-boilerplate
+            </a>
+          </div>
+          <div style="margin-top: 5%;">
+            <a href="http://blog.kaltepoth.de/">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </div>
+        </section>
 
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: false,
-				progress: true,
-				history: true,
-				center: true,
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
 
-				overview: false,
-				slideNumber: true,
-				margin: 0.05,
-				transition: 'none', // none/fade/slide/convex/concave/zoom
+        overview: false,
+        slideNumber: true,
+        margin: 0.05,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
 </html>

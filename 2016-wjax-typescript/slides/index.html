@@ -64,6 +64,126 @@
 						</script>
 					</aside>
 				</section>
+        
+        <section>
+          <h1>Why another JavaScript dialect?</h1>
+        </section>
+        
+        <section>
+          <h2>Dynamic typing is wired</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+"3" + 1
+// > "31"
+            
+"3" - 1
+// > 2
+          </code></pre>
+        </section>
+        
+        <section>
+					<h2>JavaScript</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+let n = 3;
+          </code></pre>
+					<div class="fragment">
+					<h2>TypeScript</h2>
+						<pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+let n: number = 3;
+	          </code></pre>
+					</div>
+        </section>
+
+        <section>
+					<h2>Types are great</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+let n: number = 1;
+// > 1
+						
+n = 2;
+// > 2
+
+n = "4";
+// Type 'string' is not assignable to type 'number'.
+					</code></pre>
+        </section>
+				
+				<section>
+					<h2>IDE support</h2>
+					<img src="images/intellij-error.png" alt="intellij" style="width: 100%;"/>
+				</section>
+				
+				<section>
+					<h2>Basic types</h2>
+					<pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+// numbers
+let n: number = 42;
+
+// strings
+let s: string = "Foobar";
+
+// booleans
+let b: boolean = true;
+
+// arrays
+let a: number[] = [ 1, 2, 4, 8 ];
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Tuple</h2>
+					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+let price: [ number, string ];
+
+price = [ 12.99, "EUR" ];
+// > OK
+	
+price = [ "EUR", 12.99 ];
+// > Type '[string, number]' is not assignable 
+//   to type '[number, string]'.
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Enum</h2>
+					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+enum Currency {
+  EUR, USD, JPY, GBP 
+};
+						
+let c: Currency = Currency.EUR;
+						
+c = "FOOBAR";
+// > Property 'FOOBAR' does not exist on
+//   type 'typeof Currency'. 
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Any</h2>
+					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+let a: any;
+						
+a = "Foobar";
+						
+a = false;
+						
+a = [ 42, "Foobar", true ];
+						
+a = document.getElementById( "foobar" );
+					</code></pre>
+				</section>
+				
+				<section>
+					<h2>Functions</h2>
+					<pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+function formatEuro( value: number ): string {
+	return value.toFixed(2) + " €";
+}
+						
+formatEuro( 42 );
+// > "42.00 €"
+					</code></pre>
+				</section>
 
 				<section>
 					<h1>Danke!</h1>

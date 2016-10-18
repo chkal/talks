@@ -174,14 +174,99 @@ a = document.getElementById( "foobar" );
         </section>
         
         <section>
+          <h2>Type Inference</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+let n = 3;        // inferred type is 'number'
+         
+n = "foobar";
+// Type 'string' is not assignable to type 'number'.
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript fragment" data-trim>
+let n = null;     // inferred type is 'any'
+if( something ) {
+  n = 42;
+}
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>noImplicitAny = true</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+let n = null;           // inferred type is 'any'
+if( something ) {
+  n = 42;
+}
+// Error: Variable 'n' implicitly has an 'any' type.
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript fragment" data-trim>
+let n: number = null;   // type specified manually
+if( something ) {
+  n = 42;
+}
+// OK
+          </code></pre>
+        </section>
+        
+        <section>
           <h2>Functions</h2>
-          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 function formatEuro( value: number ): string {
   return value.toFixed(2) + " €";
 }
-            
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only current-fragment"><code class="typescript" data-trim>
 formatEuro( 42 );
 // > "42.00 €"
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only"><code class="typescript" data-trim>
+
+formatEuro( "foobar" );
+// Error: Argument of type 'string' is not assignable
+//        to parameter of type 'number'
+
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only"><code class="typescript" data-trim>
+let n: number = formatEuro( 42 );
+// Error: Type 'string' is not assignable
+//        to type 'number'
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Optional Parameters</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+function formatEuro( value: number, 
+                     currency?: string ): string {
+
+  return value.toFixed(2) + " " + ( currency || "€" );
+
+}
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+formatEuro( 42 );
+// > "42.00 €"
+
+formatEuro( 42, "$" );
+// > "42.00 $"
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Default Parameters</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+function formatEuro( value: number, 
+                     currency: string = "€" ): string {
+
+  return value.toFixed(2) + " " + currency;
+
+}
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+formatEuro( 42 );
+// > "42.00 €"
+
+formatEuro( 42, "$" );
+// > "42.00 $"
           </code></pre>
         </section>
 

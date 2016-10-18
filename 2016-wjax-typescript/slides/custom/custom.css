@@ -84,3 +84,11 @@ body {
 .reveal .slides section .fragment.hl-current.current-fragment {
   color: #1b91ff;
 }
+
+.reveal .slides section .fragment.current-only {
+  display: none;
+}
+
+.reveal .slides section .fragment.current-only.current-fragment {
+  display: inherit;
+}

@@ -438,7 +438,7 @@ let money = new Money( 42, "€" );
         </section>
 
         <section>
-          <h2>Typescript</h2>
+          <h2>TypeScript</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 class Money {
 
@@ -518,10 +518,119 @@ class Money implements Printable {
           </code></pre>
         </section>
         
+        <section>
+          <h1>Modules</h1>
+        </section>
 
         <section>
-          <h1>Danke!</h1>
-          <h2>Fragen?</h2>
+          <h2>Export / Import</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// math.ts
+export function max(a: number, b: number): number {
+  return a > b ? a : b;
+}
+
+export const PI = 3.14156;
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// foobar.ts
+import { max, PI } from "./math.ts";
+
+max(9, 13) === 13;       // > true
+PI === 3.14156;          // > true
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Export / Import</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// math.ts
+export function max(a: number, b: number): number {
+  return a > b ? a : b;
+}
+
+export const PI = 3.14156;
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// foobar.ts
+import * as math from "./math.ts";
+
+math.max(9, 13) === 13   // > true
+math.PI === 3.14156      // > true
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Export / Import</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+// money.ts
+export class Money {
+
+  constructor( private amount: number,
+    private currency: string ) {
+  }
+
+  asString() {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+}          </code></pre>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+import { Money } from "./money.ts";
+
+let m = new Money( 42, "€" );
+          </code></pre>
+        </section>
+        
+        <section>
+          <h1>More ES2016 magic</h1>
+        </section>
+        
+        <section>
+          <h1>Give it a try</h1>
+        </section>
+        
+        <section>
+          <h1>Babel REPL</h1>
+          <img src="images/repl.png" alt="img" width="950" />
+          <a href="http://www.typescriptlang.org/play/#src=function%20formatEuro(%20value%3A%20number%20)%20%7B%0D%0A%20%20return%20value.toFixed(2)%20%2B%20%22%E2%82%AC%22%3B%0D%0A%7D">
+            http://www.typescriptlang.org/play/
+          </a>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Link + Zoom
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Java Integration</h1>
+            <a href="https://github.com/chkal/frontend-boilerplate">
+              https://github.com/chkal/frontend-boilerplate
+            </a>
+            <ul style="padding-top: 1em;">
+              <li class="fragment">Apache Maven</li>
+              <li class="fragment">node.js / npm</li>
+              <li class="fragment">Webpack / TypeScript</li>
+              <li class="fragment">Karma / Jasmine</li>
+            </ul>
+            <aside class="notes" data-markdown>
+              <script type="text/template">
+                * Problem:
+                * Zwei Welten
+                * JavaScript vs Java Tooling
+                * Integation:
+                * Installation von Node
+                * Webpack Module Bundler
+                * Testing
+                * Besonders Feature:
+                * Dev Experience
+              </script>
+            </aside>
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+          <h2>Questions?</h2>
           <div class="mono" style="margin-top: 6%;">
             <a href="http://bit.ly/wjax16-typescript">
               http://bit.ly/wjax16-typescript

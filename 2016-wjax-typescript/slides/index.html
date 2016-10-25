@@ -269,6 +269,255 @@ formatEuro( 42, "$" );
 // > "42.00 $"
           </code></pre>
         </section>
+        
+        <section>
+          <h1>Interfaces</h1>
+        </section>
+        
+        <section>
+          <h2>Interfaces</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+let money = {
+  amount: 42,
+  currency: "€"
+};
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+interface Money {
+  amount: number;
+  currency: string;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Using Interface</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+interface Money {
+  amount: number;
+  currency: string;
+}
+
+let money: Money = {
+  amount: 42,
+  currency: "€"
+};
+
+let amount = money.amount;     // OK
+            
+let currency = money.curency;
+// Property 'curency' does not exist on type 'Money'
+
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Functions</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+interface Money {
+  amount: number;
+  currency: string;
+  asString: () => string;
+}
+
+let money: Money = {
+  amount: 42,
+  currency: "€",
+  asString: function () {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+};
+
+money.asString();     // 42.00€
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Function Types</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+interface AsString {
+  (): string;
+}
+
+interface Money {
+  amount: number;
+  currency: string;
+  asString: AsString;
+}
+
+let money: Money = {
+  amount: 42,
+  currency: "€",
+  asString: function () {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Extending Interfaces</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+
+interface AsStringFunc {
+  (): string;
+}
+
+interface Printable {
+  asString: AsStringFunc;
+}
+
+interface Money extends Printable {
+  amount: number;
+  currency: string;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Structural Subtyping</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+interface Foo {
+  value: number;
+}
+
+interface Bar {
+  value: number;
+}
+
+let foo: Foo = {
+  value: 3
+};
+
+let bar: Bar = foo;   // OK
+          </code></pre>
+        </section>
+        
+        <section>
+          <h1>Classes</h1>
+        </section>
+
+
+        <section>
+          <h2>The old way</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var Money = function ( amount, currency ) {
+  this.amount = amount;
+  this.currency = currency;
+};
+
+Money.prototype.asString = function () {
+  return this.amount.toFixed( 2 ) + this.currency;
+};
+
+var money = new Money( 42, "€" );
+
+money.asString();
+// 42.00€
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>ECMAScript 2015</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+class Money {
+
+  constructor( amount, currency ) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
+  asString() {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+
+let money = new Money( 42, "€" );
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Typescript</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+class Money {
+
+  private amount: number;
+  private currency: string;
+
+  constructor( amount: number, currency: string ) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
+  asString() {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Readonly Properties</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+class Money {
+
+  private readonly amount: number;
+  private readonly currency: string;
+
+  constructor( amount: number, currency: string ) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
+  asString() {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Parameter Properties</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+class Money {
+
+  constructor( private amount: number,
+               private currency: string ) {
+    // nothing here
+  }
+
+  asString() {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Implementing Interfaces</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+interface Printable {
+  asString(): string;
+}
+
+class Money implements Printable {
+
+  constructor( private amount: number,
+               private currency: string ) {
+    // nothing here
+  }
+
+  asString() {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+}
+          </code></pre>
+        </section>
+        
 
         <section>
           <h1>Danke!</h1>

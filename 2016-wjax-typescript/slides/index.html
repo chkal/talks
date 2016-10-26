@@ -81,6 +81,11 @@
         </section>
         
         <section>
+          <h1>TypeScript</h1>
+          <h2>ECMAScript + Types</h2>
+        </section>
+        
+        <section>
           <h2>JavaScript</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
 let n = 3;
@@ -109,10 +114,14 @@ n = "4";
         </section>
         
         <section>
-          <h2>IDE support</h2>
+          <h2>Catch errors early</h2>
           <img src="images/intellij-error.png" alt="intellij" style="width: 100%;"/>
         </section>
-        
+
+        <section>
+          <h1>Types</h1>
+        </section>
+
         <section>
           <h2>Basic types</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
@@ -131,20 +140,6 @@ let a: number[] = [ 1, 2, 4, 8 ];
         </section>
         
         <section>
-          <h2>Tuple</h2>
-          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
-let price: [ number, string ];
-
-price = [ 12.99, "EUR" ];
-// > OK
-  
-price = [ "EUR", 12.99 ];
-// Error: Type '[string, number]' is not 
-//        assignable to type '[number, string]'.
-          </code></pre>
-        </section>
-        
-        <section>
           <h2>Enum</h2>
           <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
 enum Currency {
@@ -156,6 +151,20 @@ let c: Currency = Currency.EUR;
 c = "FOOBAR";
 // Error: Property 'FOOBAR' does not exist on
 //        type 'typeof Currency'. 
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Tuple</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+let price: [ number, string ];
+
+price = [ 12.99, "EUR" ];
+// > OK
+  
+price = [ "EUR", 12.99 ];
+// Error: Type '[string, number]' is not 
+//        assignable to type '[number, string]'.
           </code></pre>
         </section>
         
@@ -183,7 +192,7 @@ n = "foobar";
 // Error: Type 'string' is not assignable 
 //        to type 'number'.
           </code></pre>
-          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript fragment" data-trim>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
 let n = null;     // inferred type is 'any'
 if( something ) {
   n = 42;
@@ -200,7 +209,7 @@ if( something ) {
 }
 // Error: Variable 'n' implicitly has an 'any' type.
           </code></pre>
-          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript fragment" data-trim>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
 let n: number = null;   // type specified manually
 if( something ) {
   n = 42;
@@ -210,15 +219,19 @@ if( something ) {
         </section>
         
         <section>
-          <h2>Functions</h2>
+          <h1>Functions</h1>
+        </section>
+        
+        <section>
+          <h2>Typed Functions</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 function formatEuro( value: number ): string {
-  return value.toFixed(2) + " €";
+  return value.toFixed(2) + "€";
 }
           </code></pre>
           <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only current-fragment"><code class="typescript" data-trim>
 formatEuro( 42 );
-// > "42.00 €"
+// > "42.00€"
           </code></pre>
           <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only"><code class="typescript" data-trim>
 
@@ -237,38 +250,38 @@ let n: number = formatEuro( 42 );
         <section>
           <h2>Optional Parameters</h2>
           <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
-function formatEuro( value: number, 
-                     currency?: string ): string {
+function formatMoney( value: number, 
+                      currency?: string ): string {
 
-  return value.toFixed(2) + " " + ( currency || "€" );
+  return value.toFixed(2) + ( currency || "€" );
 
 }
           </code></pre>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
-formatEuro( 42 );
-// > "42.00 €"
+formatMoney( 42 );
+// > "42.00€"
 
-formatEuro( 42, "$" );
-// > "42.00 $"
+formatMoney( 42, "$" );
+// > "42.00$"
           </code></pre>
         </section>
 
         <section>
           <h2>Default Parameters</h2>
           <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
-function formatEuro( value: number, 
-                     currency: string = "€" ): string {
+function formatMoney( value: number, 
+                      currency: string = "€" ): string {
 
-  return value.toFixed(2) + " " + currency;
+  return value.toFixed(2) + currency;
 
 }
           </code></pre>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
-formatEuro( 42 );
-// > "42.00 €"
+formatMoney( 42 );
+// > "42.00€"
 
-formatEuro( 42, "$" );
-// > "42.00 $"
+formatMoney( 42, "$" );
+// > "42.00$"
           </code></pre>
         </section>
         
@@ -293,7 +306,7 @@ interface Money {
         </section>
 
         <section>
-          <h2>Using Interface</h2>
+          <h2>Using Interfaces</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 interface Money {
   amount: number;
@@ -308,7 +321,7 @@ let money: Money = {
 let amount = money.amount;     // OK
             
 let currency = money.curency;
-// Property 'curency' does not exist on type 'Money'
+// Error: Property 'curency' does not exist on type
 
           </code></pre>
         </section>
@@ -330,21 +343,21 @@ let money: Money = {
   }
 };
 
-money.asString();     // 42.00€
+money.asString();     // > 42.00€
           </code></pre>
         </section>
 
         <section>
           <h2>Function Types</h2>
           <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
-interface AsString {
+interface AsStringFunc {
   (): string;
 }
 
 interface Money {
   amount: number;
   currency: string;
-  asString: AsString;
+  asString: AsStringFunc;
 }
 
 let money: Money = {
@@ -415,7 +428,7 @@ Money.prototype.asString = function () {
 var money = new Money( 42, "€" );
 
 money.asString();
-// 42.00€
+// > 42.00€
           </code></pre>
         </section>
 
@@ -488,7 +501,7 @@ class Money {
 
   constructor( private amount: number,
                private currency: string ) {
-    // nothing here
+    // empty
   }
 
   asString() {
@@ -518,6 +531,18 @@ class Money implements Printable {
   }
 }
           </code></pre>
+        </section>
+        
+        <section>
+          <h2>There is more:</h2>
+          <ul>
+            <li>Inheritance</li>
+            <li>Abstract classes</li>
+            <li>Static properties</li>
+            <li>Visibility modifiers</li>
+            <li>Accessors</li>
+            <li>Generics</li>
+          </ul>
         </section>
         
         <section>
@@ -588,7 +613,7 @@ let m = new Money( 42, "€" );
         </section>
 
         <section>
-          <h2>ES2015 Constants</h2>
+          <h2>ES2016 Constants</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
 const users = [ "Christian" ];
 
@@ -607,27 +632,6 @@ users = [ "Bob" ];
               * Block Scope
               * Konstante
               * Java: `final`
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>String Concatenation</h2>
-          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
-let name = "Christian";
-let count = 213;
-
-let message = "Hello " + name + ", you have "
-    + count + " unread messages.";
-
-console.log( message );
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Stringbau per +
-              * Frage:
-              * Wer macht das so?
-              * Wer will was Bessers?
             </script>
           </aside>
         </section>
@@ -663,7 +667,7 @@ let html =
         </section>
 
         <section>
-          <h2>ES5 Functions</h2>
+          <h2>Classic Functions</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
 let numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
 
@@ -683,7 +687,7 @@ numbers.filter( function(n) {
         </section>
 
         <section>
-          <h2>ES2015 Arrow Functions</h2>
+          <h2>ES2016 Arrow Functions</h2>
           <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
 numbers.filter( n => {
   return n % 2 !== 0;

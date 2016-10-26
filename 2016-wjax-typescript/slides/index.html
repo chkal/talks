@@ -82,7 +82,8 @@
         
         <section>
           <h1>TypeScript</h1>
-          <h2>ECMAScript + Types</h2>
+          <h1>=</h1>
+          <h1>ECMAScript + Types</h1>
         </section>
         
         <section>
@@ -185,7 +186,7 @@ a = document.getElementById( "foobar" );
         
         <section>
           <h2>Type Inference</h2>
-          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
 let n = 3;        // inferred type is 'number'
          
 n = "foobar";
@@ -195,7 +196,8 @@ n = "foobar";
           <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
 let n = null;     // inferred type is 'any'
 if( something ) {
-  n = 42;
+  n = 42;          // OK
+  n = "foobar";    // OK
 }
           </code></pre>
         </section>
@@ -218,6 +220,31 @@ if( something ) {
           </code></pre>
         </section>
         
+        <section>
+          <h2>Advanced Types</h2>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+let t: string|number;
+
+t = 42;
+// > OK
+
+t = "foobar";
+// OK
+
+t = true;
+// Error: Type 'boolean' is not assignable to type 
+//        'string | number'.
+         </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Intersection Types
+              * Type Aliases
+              * String Literal Types
+              * Discriminated Unions
+            </script>
+          </aside>
+        </section>
+
         <section>
           <h1>Functions</h1>
         </section>

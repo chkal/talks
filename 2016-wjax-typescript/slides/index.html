@@ -67,6 +67,13 @@
         
         <section>
           <h1>Why another JavaScript dialect?</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Warum?
+              * CoffeeScript, etc
+              * JavaScript skaliert schlecht
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -78,12 +85,25 @@
 "3" - 1
 // > 2
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Keine Typen
+            </script>
+          </aside>
         </section>
         
         <section>
           <h1>TypeScript</h1>
           <h1>=</h1>
           <h1>ECMAScript + Types</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ECMAScript 2016
+              * Viele Feature unterstützt
+              * Typensystem
+              * Compiles to ES5
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -97,6 +117,13 @@ let n = 3;
 let n: number = 3;
             </code></pre>
           </div>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Hinweis: let
+                * Bekannt?
+              * TypeScript mit Typen
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -112,15 +139,32 @@ n = "4";
 // Error: Type 'string' is not assignable 
 //        to type 'number'.
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Viele Vorteile
+            </script>
+          </aside>
         </section>
         
         <section>
           <h2>Catch errors early</h2>
           <img src="images/intellij-error.png" alt="intellij" style="width: 100%;"/>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Kompilierzeit
+              * IDE
+              * Nicht zur Laufzeit
+            </script>
+          </aside>
         </section>
 
         <section>
           <h1>Types</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Grundlagen zu Typen
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -138,6 +182,11 @@ let b: boolean = true;
 // arrays
 let a: number[] = [ 1, 2, 4, 8 ];
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Standard JS Typen
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -153,6 +202,11 @@ c = "FOOBAR";
 // Error: Property 'FOOBAR' does not exist on
 //        type 'typeof Currency'. 
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bekannt aus Java
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -167,6 +221,12 @@ price = [ "EUR", 12.99 ];
 // Error: Type '[string, number]' is not 
 //        assignable to type '[number, string]'.
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Vermisst in Java
+              * Spezielles Array
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -182,6 +242,12 @@ a = [ 42, "Foobar", true ];
             
 a = document.getElementById( "foobar" );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wie Object in Java
+              * Hat durchaus Verwendung
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -200,6 +266,15 @@ if( something ) {
   n = "foobar";    // OK
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Typenangabe oft optional
+              * Besonders bei Variablen
+              * Nur sofortige Initialisierung
+              * ---
+              * `noImplicitAny`
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -218,6 +293,12 @@ if( something ) {
 }
 // OK
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Fehler bei implizitem `any`
+              * Für neue Projekte immer setzen!
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -237,16 +318,26 @@ t = true;
          </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Intersection Types
-              * Type Aliases
-              * String Literal Types
-              * Discriminated Unions
+              * Mächtiges Typensystem
+              * Beispiel Union
+              * Gut für: Selektor|Element|JQuery
+              * Weiteres 
+                * Intersection Types
+                * Type Aliases
+                * String Literal Types (2.0?)
+                * Discriminated Unions (2.0)
             </script>
           </aside>
         </section>
 
         <section>
           <h1>Functions</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Funktionen wichtig!
+              * Typisierte Funktionen?
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -272,6 +363,14 @@ let n: number = formatEuro( 42 );
 // Error: Type 'string' is not assignable
 //        to type 'number'
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Typen für Parameter
+              * Und Return Type
+              * Wird korrekt geprüft
+              * ...
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -291,6 +390,12 @@ formatMoney( 42 );
 formatMoney( 42, "$" );
 // > "42.00$"
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Nicht in Java
+              * Ähnlich: null übergeben
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -310,6 +415,12 @@ formatMoney( 42 );
 formatMoney( 42, "$" );
 // > "42.00$"
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Nicht in Java
+              * Java: Mehrere Methoden :(
+            </script>
+          </aside>
         </section>
         
         <section>

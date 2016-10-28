@@ -425,6 +425,12 @@ formatMoney( 42, "$" );
         
         <section>
           <h1>Interfaces</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher primitive Datentypen
+              * Jetzt: Objekte
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -441,6 +447,13 @@ interface Money {
   currency: string;
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Beispiel Objekt
+              * Wie typisieren
+              * Interface definiert Struktur
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -462,6 +475,13 @@ let currency = money.curency;
 // Error: Property 'curency' does not exist on type
 
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Interface definieren
+              * Variable von diesem Typ
+              * Sicherer Zugriff
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -483,6 +503,13 @@ let money: Money = {
 
 money.asString();     // > 42.00€
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Properties -> Funktionen
+              * Definieren der Signatur
+              * -> Anonym, geht auch anders
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -506,12 +533,19 @@ let money: Money = {
   }
 };
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Interface definiert Funktion
+              * Verwendung im Interface
+              * Implementierung wie vorher
+              * -> Interface Vererbung
+            </script>
+          </aside>
         </section>
 
         <section>
           <h2>Extending Interfaces</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
-
 interface AsStringFunc {
   (): string;
 }
@@ -525,6 +559,12 @@ interface Money extends Printable {
   currency: string;
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Interfaces können erben
+              * Wie in Java
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -544,10 +584,25 @@ let foo: Foo = {
 
 let bar: Bar = foo;   // OK
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Eher überraschend für Java Devs
+              * Interface benennt Struktur
+              * Maßgebend ist aber Struktur
+              * -> Klassen
+            </script>
+          </aside>
         </section>
         
         <section>
           <h1>Classes</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher nur Object Literals
+              * Jetzt Klassen
+              * -> Prototype Beispiel
+            </script>
+          </aside>
         </section>
 
 
@@ -568,6 +623,14 @@ var money = new Money( 42, "€" );
 money.asString();
 // > 42.00€
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Konstruktur Funktionen, Prototypen
+              * Wer kennt das?
+              * ...
+              * -> ECMAScript 2015 macht es besser
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -588,6 +651,14 @@ class Money {
 
 let money = new Money( 42, "€" );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Frage: Wer hat sowas schon mal gesehen?
+              * Java Devs sollten es verstehen
+              * Reines ECMAScript!!!
+              * -> Wie TypeScript
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -603,12 +674,22 @@ class Money {
     this.currency = currency;
   }
 
-  asString() {
+  asString(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Fast genau so, Unterschied:
+                * Properties definiert
+                * Typen bei Konstruktur
+                * Bei asString
+              * Properties: Public by default
+              * -> Read only properties (TS2)
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -624,12 +705,21 @@ class Money {
     this.currency = currency;
   }
 
-  asString() {
+  asString(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Neu in TypeScript 2.0
+              * Final in Java
+              * ---
+              * Bekanntes Pattern: Const -> Prop
+              * -> Spezieller Syntax
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -642,12 +732,21 @@ class Money {
     // empty
   }
 
-  asString() {
+  asString(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Keine Properties definiert
+              * Regel: Schlüsselwort in Konstruktor
+              * Bekannt aus Ruby
+              * IMO fragwürdig
+              * -> Interfaces
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -664,11 +763,17 @@ class Money implements Printable {
     // nothing here
   }
 
-  asString() {
+  asString(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Nicht überraschend
+              * Wie in Java
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -681,21 +786,36 @@ class Money implements Printable {
             <li>Accessors</li>
             <li>Generics</li>
           </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Es gibt viel mehr...
+              * -> Modules
+            </script>
+          </aside>
         </section>
         
         <section>
           <h1>Modules</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Modulsystem
+              * Schon lange in TypeScript
+              * ECMAScript 2015 nachgezogen
+              * Seit 1.5 angeglichen
+              * -> So sieht es aus
+            </script>
+          </aside>
         </section>
 
         <section>
           <h2>Export / Import</h2>
           <pre class="fragment" style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 // math.ts
-export function max(a: number, b: number): number {
+export function max( a: number, b: number ): number {
   return a > b ? a : b;
 }
 
-export const PI = 3.14156;
+export let PI = 3.14156;
           </code></pre>
           <pre class="fragment" style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 // foobar.ts
@@ -704,6 +824,16 @@ import { max, PI } from "./math.ts";
 max(9, 13) === 13;       // > true
 PI === 3.14156;          // > true
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Datei:
+                * Alles private für Modul
+                * Export definiert "public" Teile
+              * Andere Datei:
+                * Import aus erster Datei
+              * -> Alternativer Syntax
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -723,6 +853,13 @@ import * as math from "./math.ts";
 math.max(9, 13) === 13   // > true
 math.PI === 3.14156      // > true
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Alles importieren
+              * ...
+              * -> Funktioniert super für Klassen
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -732,10 +869,10 @@ math.PI === 3.14156      // > true
 export class Money {
 
   constructor( private amount: number,
-    private currency: string ) {
+               private currency: string ) {
   }
 
-  asString() {
+  asString(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 }          </code></pre>
@@ -744,10 +881,27 @@ import { Money } from "./money.ts";
 
 let m = new Money( 42, "€" );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Fast wie in Java:
+                * Eine Datei pro Klasse
+                * Import in anderen Dateien
+              * Sehr mächtige Art der Strukturierung
+              * -> Weitere ECMAScript Features
+            </script>
+          </aside>
         </section>
         
         <section>
           <h1>More ES2016 magic</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher TypeScript Features
+              * Wichtige ECMAScript Features
+              * Nicht TypeSpript spezifisch
+              * Aber vielleicht nicht bekannt
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -793,13 +947,14 @@ let html =
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
+              * Erstellen von Strings
               * Block 1:
-              * Unterschiede:
-              * Backtick als Delimiter
-              * EL-Ausdrücke in String
-              * -> Besser lesbar
+                * Unterschiede:
+                * Backtick als Delimiter
+                * EL-Ausdrücke in String
+                * -> Besser lesbar
               * Block 2:
-              * Multiline Strings
+                * Multiline Strings
             </script>
           </aside>
         </section>
@@ -885,14 +1040,14 @@ numbers.filter( n => n % 2 );
             <aside class="notes" data-markdown>
               <script type="text/template">
                 * Problem:
-                * Zwei Welten
-                * JavaScript vs Java Tooling
+                  * Zwei Welten
+                  * JavaScript vs Java Tooling
                 * Integation:
-                * Installation von Node
-                * Webpack Module Bundler
-                * Testing
+                  * Installation von Node
+                  * Webpack Module Bundler
+                  * Testing
                 * Besonders Feature:
-                * Dev Experience
+                  * Dev Experience
               </script>
             </aside>
         </section>

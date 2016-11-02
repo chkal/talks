@@ -384,6 +384,7 @@ var obj = new ClickCounter();
           </aside>
         </section>
 
+<!--
         <section>
           <h1>Object Literals</h1>
           <aside class="notes" data-markdown>
@@ -431,9 +432,9 @@ const person = {
           <script type="text/template">
             * Simpler version
           </script>
-
         </section>
-
+-->
+        
         <section>
           <h1>Template Strings</h1>
           <aside class="notes" data-markdown>
@@ -640,7 +641,7 @@ for( let s of set ) {
 
         <section>
           <h1>Default &amp; Rest Params</h1>
-          <h1>Spread Operator</h1>
+<!--          <h1>Spread Operator</h1>-->
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Gruppe von Features
@@ -653,15 +654,15 @@ for( let s of set ) {
         <section>
           <h2>Default Parameter</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
-function f( a, b = 10 ) {
-  return a + b;
+function formatMoney( value, currency = "$" ) {
+  return value.toFixed( 2 ) + currency;
 }
 
-console.log( f( 3, 5 ) );
-// > 8
+console.log( formatMoney( 42.99, "€" ) );
+// > 42.99€
 
-console.log( f( 3 ) );
-// > 13
+console.log( formatMoney( 42.99 ) );
+// > 42.99$
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
@@ -703,6 +704,7 @@ format( "Die Summe von ? und ? ist ?", 3, 7, 10 );
           </aside>
         </section>
 
+        <!--
         <section>
           <h2>Spread Operator</h2>
           <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -726,7 +728,6 @@ console.log( Math.max(...numbers) );
           </aside>
         </section>
 
-<!--
         <section>
           <h2>Destructuring</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -785,6 +786,7 @@ christian.greet();   // > Hello Christian
           </aside>
         </section>
 
+        <!--
         <section>
           <h2>ES5: Object.create()</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -808,7 +810,7 @@ christian.greet();   // > Hello Christian
             </script>
           </aside>
         </section>
-
+-->
         <section>
           <h2>ES2015 Classes</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>

@@ -1,11 +1,11 @@
 #!/usr/bin/env ../../node-babel.sh
 
-function add(a, b = 10) {
-  return a + b;
+function formatMoney( value, currency = "$" ) {
+  return value.toFixed( 2 ) + currency;
 }
 
-console.log( add( 3, 5 ) );
-// > 8
+console.log( formatMoney( 42.99, "€" ) );
+// > 42.99€
 
-console.log( add( 3 ) );
-// > 13
+console.log( formatMoney( 42.99 ) );
+// > 42.99$

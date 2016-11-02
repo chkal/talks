@@ -1037,6 +1037,60 @@ for( let i of sequence(10) ) {
             </script>
           </aside>
         </section>
+        
+        <section>
+          <h1>And what about ES2016?</h1>
+        </section>
+        
+        <section>
+          <h2>New in ES2016</h2>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+Math.pow( 3, 2 );       // ES2015
+// > 9
+
+3 ** 2                  // ES2016
+// > 9
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+const numbers = [ 1, 2, 4, 8 ];
+
+numbers.includes( 2 );      // > true
+
+numbers.includes( 3 );      // > false
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>ECMAScript Process</h2>
+          <ul>
+            <li class="fragment">
+              Frequent releases (yearly)
+            </li>
+            <li class="fragment">
+              Feature stages:
+              <ul>
+                <li>Stage 0: Strawman</li>
+                <li>Stage 1: Proposal</li>
+                <li>Stage 2: Draft</li>
+                <li>Stage 3: Candidate</li>
+                <li>Stage 4: Finished</li>
+              </ul>
+            </li>
+            <li class="fragment">
+              <a href="https://github.com/tc39/proposals">ES2017 proposals</a>
+            </li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Stages:
+                * 0 - idea
+                * 1 - working on. (12)
+                * 2 - initial spec. (9)
+                * 3 - initial browser impls. (6)
+                * 4 - done
+            </script>
+          </aside>
+        </section>
 
         <section>
           <h1>Can I use this stuff?</h1>

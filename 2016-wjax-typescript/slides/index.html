@@ -79,10 +79,10 @@
         <section>
           <h2>Dynamic typing is wired</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
-"3" + 1
+"3" + 1         // implicit cast to string
 // > "31"
             
-"3" - 1
+"3" - 1         // implicit cast to number
 // > 2
           </code></pre>
           <aside class="notes" data-markdown>
@@ -260,10 +260,10 @@ n = "foobar";
 //        to type 'number'.
           </code></pre>
           <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
-let n = null;     // inferred type is 'any'
+let n = null;       // inferred type is 'any'
 if( something ) {
-  n = 42;          // OK
-  n = "foobar";    // OK
+  n = 42;           // OK
+  n = "foobar";     // Also OK :-(
 }
           </code></pre>
           <aside class="notes" data-markdown>
@@ -279,7 +279,7 @@ if( something ) {
         
         <section>
           <h2>noImplicitAny = true</h2>
-          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
 let n = null;           // inferred type is 'any'
 if( something ) {
   n = 42;

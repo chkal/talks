@@ -966,6 +966,196 @@ const christian = new Person("Christian");
             </script>
           </aside>
         </section>
+        
+        <section>
+          <h1>Promises</h1>
+        </section>
+        
+        <section>
+          <h2>Callback Hell</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+asyncFunc1( function () {
+  asyncFunc2( function () {
+    asyncFunc3( function () {
+      asyncFunc4( function () {
+            
+        // :-(
+            
+      } );
+    } );
+  } );
+} );
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Promise</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const promise = asyncFunc();
+
+promise.then( result => {
+  // handle success
+} );
+
+promise.catch( error => {
+  // handle error
+} );
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Chaining Promises</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+asyncFunc1()                      // Step #1
+  .then( result1 => {
+    return asyncFunc2();          // Step #2
+  } )
+  .then( result2 => {
+    return asyncFunc3();          // Step #3
+  } )
+  .then( result3 => {
+    // handle final result        // Step #4
+  } )
+  .catch( error => {
+    // handle all errors
+  } );
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+navigator.geolocation.getCurrentPosition(
+  position => {
+    // handle success
+  },
+  error => {
+    // handle error
+  }
+);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+
+
+    
+     
+
+      
+      
+
+      
+    
+            
+  
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( 
+
+    
+     
+
+      
+      
+
+      
+    
+            
+    );
+}
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( ( resolve, reject ) => {
+
+    
+     
+
+      
+      
+
+      
+    
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( ( resolve, reject ) => {
+
+    navigator.geolocation.getCurrentPosition(
+      position => {
+
+      },
+      error => {
+
+      }
+    );
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( ( resolve, reject ) => {
+
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        resolve( position.coords );
+      },
+      error => {
+        reject( error );
+      }
+    );
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+requestPosition()
+  .then( coords => {
+    console.log( 
+      coords.latitude + ", " + coords.longitude 
+    );
+  } )
+  .catch( error => {
+    console.log( "Failed!" );
+  } );
+          </code></pre>
+        </section>
 
         <!--
         <section>

@@ -1025,10 +1025,10 @@ asyncFunc1()                      // Step #1
           <h2>Example: HTML5 Geolocation API</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
 navigator.geolocation.getCurrentPosition(
-  position => {
+  function( position ) {
     // handle success
   },
-  error => {
+  function( error ) {
     // handle error
   }
 );

@@ -82,9 +82,9 @@
         </section>
 
         <section>
-          <h1>ECMAScript</h1>
-          <h2>aka</h2>
           <h1>JavaScript</h1>
+          <h2>aka</h2>
+          <h1>ECMAScript</h1>
           <aside class="notes" data-markdown>
             <script type="text/template">
               * JavaScript
@@ -832,7 +832,7 @@ class Person {
   }
 }
 
-const christian = new Person("Christian");
+const christian = new Person( "Christian" );
 
 christian.greet();   // > Hello Christian
           </code></pre>
@@ -943,7 +943,7 @@ math.PI === 3.14156      // > true
 // person.js
 export default class Person {
 
-  constructor(name) {
+  constructor( name ) {
     this.name = name;
   }
 

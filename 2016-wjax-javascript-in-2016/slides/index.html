@@ -1013,7 +1013,7 @@ asyncFunc1()                      // Step #1
     return asyncFunc3();          // Step #3
   } )
   .then( result3 => {
-    // handle final result        // Step #4
+    // handle final result
   } )
   .catch( error => {
     // handle all errors
@@ -1144,16 +1144,15 @@ function requestPosition() {
         <section>
           <h2>Example: HTML5 Geolocation API</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
-requestPosition()
-  .then( coords => {
-            
-    console.log( 
-      coords.latitude + ", " + coords.longitude 
-    );
-            
+requestPosition().then( coords => {
+
+    console.log( "Position: " + coords );
+
   } )
   .catch( error => {
+
     console.log( "Failed!" );
+
   } );
           </code></pre>
         </section>

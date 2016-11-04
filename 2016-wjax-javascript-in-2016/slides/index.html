@@ -76,6 +76,7 @@
                 * Dortmund
                 * Webbasierte Unternehmensanw.
                 * Hinter Firewall
+                * Java EE + JavaScript
               * Open Source
             </script>
           </aside>
@@ -678,7 +679,7 @@ formatMoney( 42.99 );
                 * Default Value
               * Bisher
                 * `arguments` Array
-              * Aus C#
+              * Aus C# / PHP?
               * Java
                 * Mehrere Methoden :(
             </script>
@@ -968,6 +969,15 @@ const christian = new Person( "Christian" );
         
         <section>
           <h1>Promises</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Asynchronität in den Griff bekommen
+              * JavaScript Callbacks
+                * AJAX
+                * Event Handler
+              * -> Callback Hell
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -985,6 +995,17 @@ asyncFunc1( function () {
   } );
 } );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Tiefe Verschacheltung
+              * Schwer zu verstehen.
+              * -
+              * Idee:
+                * Statt Callback
+                * Promise / Versprechen
+                * Java: CompletableFuture
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -1000,6 +1021,15 @@ promise.catch( error => {
   // handle error
 } );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Kein Callback
+              * Return Promise
+              * Registrierung von Callbacks
+              * -
+              * Schön: Chaining
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -1019,6 +1049,12 @@ asyncFunc1()                      // Step #1
     // handle all errors
   } );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Chaining
+              * Zentrales Error Handling
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -1033,6 +1069,15 @@ navigator.geolocation.getCurrentPosition(
   }
 );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Klassische API
+              * Keine Promises
+              * Nur Callbacks
+              * -
+              * -> Promises
+            </script>
+          </aside>
         </section>
 
         <section>
@@ -1155,6 +1200,12 @@ requestPosition().then( coords => {
 
   } );
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Liest sich schön
+              * Error Handling optional
+            </script>
+          </aside>
         </section>
 
         <!--
@@ -1232,6 +1283,13 @@ for( let i of sequence(10) ) {
         
         <section>
           <h1>And what about ES2016?</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher ES2015
+              * Und ES2016?
+              * -> Wenig
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -1250,6 +1308,13 @@ numbers.includes( 2 );      // > true
 
 numbers.includes( 3 );      // > false
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Potenzieren?
+              * -
+              * Arrays
+            </script>
+          </aside>
         </section>
         
         <section>

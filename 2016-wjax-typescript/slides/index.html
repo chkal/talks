@@ -71,19 +71,37 @@
             <script type="text/template">
               * Warum?
               * CoffeeScript, etc
-              * JavaScript skaliert schlecht
+              * -> Microsoft
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <img src="images/typescript.png" style="width: 100%;"/>
+          <div style="font-size: 50%;">
+            Source:&#160;<a href="http://www.typescriptlang.org/">
+            http://www.typescriptlang.org/
+          </a>
+          </div>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
             </script>
           </aside>
         </section>
         
         <section>
           <h2>Dynamic typing is wired</h2>
-          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
-"3" + 1         // implicit cast to string
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+"3" + 1     // implicit cast to string
 // > "31"
             
-"3" - 1         // implicit cast to number
+"3" - 1     // implicit cast to number
 // > 2
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+{} + {}     // > "[object Object][object Object]"
+{} + []     // > 0
+[] + []     // > ""
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
@@ -135,7 +153,7 @@ let n: number = 1;
 n = 2;
 // > 2
 
-n = "4";
+n = "foobar";
 // Error: Type 'string' is not assignable 
 //        to type 'number'.
           </code></pre>
@@ -248,6 +266,22 @@ a = document.getElementById( "foobar" );
               * Hat durchaus Verwendung
             </script>
           </aside>
+        </section>
+        
+        <section>
+          <h2>Type assertions</h2>
+          <pre style="width: 100%; font-size: 0.80em;" class="fragment"><code class="typescript" data-trim>
+let value: any = "Christian";
+
+(&lt;string&gt;value).substring( 0, 5 );
+// > "Chris"
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.80em;" class="fragment"><code class="typescript" data-trim>
+let value: any = "Christian";
+
+(value as string).substring( 0, 5 );
+// > "Chris"
+</code></pre>
         </section>
         
         <section>

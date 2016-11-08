@@ -1,7 +1,7 @@
 #!../node_modules/.bin/ts-node
 
 interface Printable {
-  asString(): string;
+  asString: () => string;
 }
 
 class Money implements Printable {

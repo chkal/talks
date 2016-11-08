@@ -584,13 +584,9 @@ interface Money {
   asString: AsStringFunc;
 }
 
-let money: Money = {
-  amount: 42,
-  currency: "€",
-  asString: function(): string {
-    return this.amount.toFixed( 2 ) + this.currency;
-  }
-};
+let money: Money = { ... };
+            
+money.asString();     // > 42.00€
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
@@ -812,7 +808,7 @@ class Money {
           <h2>Implementing Interfaces</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 interface Printable {
-  asString(): string;
+  asString: () => string;
 }
 
 class Money implements Printable {
@@ -899,11 +895,11 @@ PI === 3.14156;          // > true
           <h2>Export / Import</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 // math.ts
-export function max(a: number, b: number): number {
+export function max( a: number, b: number ): number {
   return a > b ? a : b;
 }
 
-export const PI = 3.14156;
+export let PI = 3.14156;
           </code></pre>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 // foobar.ts
@@ -1073,7 +1069,7 @@ numbers.filter( n => n % 2 );
         </section>
         
         <section>
-          <h1>Babel REPL</h1>
+          <h1>TypeScript REPL</h1>
           <img src="images/repl.png" alt="img" width="950" />
           <a href="http://www.typescriptlang.org/play/#src=function%20formatEuro(%20value%3A%20number%20)%20%7B%0D%0A%20%20return%20value.toFixed( 2 )%20%2B%20%22%E2%82%AC%22%3B%0D%0A%7D">
             http://www.typescriptlang.org/play/

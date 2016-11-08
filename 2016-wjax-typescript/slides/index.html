@@ -112,8 +112,11 @@
         
         <section>
           <h1>TypeScript</h1>
-          <h1>=</h1>
-          <h1>ECMAScript + Types</h1>
+          <ul style="font-size: 200%;">
+            <li class="fragment">ECMAScript 2016</li>
+            <li class="fragment">Type system</li>
+            <li class="fragment">Compiles to ES5</li>
+          </ul>
           <aside class="notes" data-markdown>
             <script type="text/template">
               * ECMAScript 2016
@@ -127,7 +130,7 @@
         <section>
           <h2>JavaScript</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
-let n = 3;
+var n = 3;
           </code></pre>
           <div class="fragment">
           <h2>TypeScript</h2>
@@ -177,7 +180,7 @@ n = "foobar";
         </section>
 
         <section>
-          <h1>Types</h1>
+          <h1>Basic Types</h1>
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Grundlagen zu Typen
@@ -338,13 +341,13 @@ if( something ) {
         <section>
           <h2>Advanced Types</h2>
           <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
-let t: string|number;
+let t: string|number;     // union type
 
 t = 42;
 // > OK
 
 t = "foobar";
-// OK
+// > OK
 
 t = true;
 // Error: Type 'boolean' is not assignable to type 
@@ -365,6 +368,28 @@ t = true;
         </section>
 
         <section>
+          <h2>Advanced Types</h2>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+type MyType = string|number;    // type alias
+
+let t: MyType = "foobar";
+         </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+type Mode = "simple" | "advanced";
+
+let mode: Mode = "simple";
+
+mode = "foobar";
+// Error: Type '"foobar"' is not assignable to 
+//        type 'Mode'
+         </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+            </script>
+          </aside>
+        </section>
+
+        <section>
           <h1>Functions</h1>
           <aside class="notes" data-markdown>
             <script type="text/template">
@@ -378,7 +403,7 @@ t = true;
           <h2>Typed Functions</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
 function formatEuro( value: number ): string {
-  return value.toFixed(2) + "€";
+  return value.toFixed( 2 ) + "€";
 }
           </code></pre>
           <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only current-fragment"><code class="typescript" data-trim>
@@ -413,7 +438,7 @@ let n: number = formatEuro( 42 );
 function formatMoney( value: number, 
                       currency?: string ): string {
 
-  return value.toFixed(2) + ( currency || "€" );
+  return value.toFixed( 2 ) + ( currency || "€" );
 
 }
           </code></pre>
@@ -438,7 +463,7 @@ formatMoney( 42, "$" );
 function formatMoney( value: number, 
                       currency: string = "€" ): string {
 
-  return value.toFixed(2) + currency;
+  return value.toFixed( 2 ) + currency;
 
 }
           </code></pre>
@@ -530,7 +555,7 @@ interface Money {
 let money: Money = {
   amount: 42,
   currency: "€",
-  asString: function () {
+  asString: function(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 };
@@ -562,7 +587,7 @@ interface Money {
 let money: Money = {
   amount: 42,
   currency: "€",
-  asString: function () {
+  asString: function(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 };
@@ -1050,7 +1075,7 @@ numbers.filter( n => n % 2 );
         <section>
           <h1>Babel REPL</h1>
           <img src="images/repl.png" alt="img" width="950" />
-          <a href="http://www.typescriptlang.org/play/#src=function%20formatEuro(%20value%3A%20number%20)%20%7B%0D%0A%20%20return%20value.toFixed(2)%20%2B%20%22%E2%82%AC%22%3B%0D%0A%7D">
+          <a href="http://www.typescriptlang.org/play/#src=function%20formatEuro(%20value%3A%20number%20)%20%7B%0D%0A%20%20return%20value.toFixed( 2 )%20%2B%20%22%E2%82%AC%22%3B%0D%0A%7D">
             http://www.typescriptlang.org/play/
           </a>
           <aside class="notes" data-markdown>

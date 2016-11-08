@@ -1,7 +1,7 @@
 #!../node_modules/.bin/ts-node
 
 interface Printable {
-  asString: () => string;
+  asString(): void;
 }
 
 class Money implements Printable {
@@ -11,7 +11,7 @@ class Money implements Printable {
     // nothing here
   }
 
-  asString() {
+  asString(): string {
     return this.amount.toFixed( 2 ) + this.currency;
   }
 

@@ -69,9 +69,10 @@
           <h1>Why another JavaScript dialect?</h1>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Warum?
-              * CoffeeScript, etc
-              * -> Microsoft
+              * Warum weitere Sprache?
+              * JavaScript?
+              * Andere Sprachen?
+              * -> Microsoft bewirbt...
             </script>
           </aside>
         </section>
@@ -85,12 +86,17 @@
           </div>
           <aside class="notes" data-markdown>
             <script type="text/template">
+              * That scales...
+              * Es:
+                * Scales
+                * Has Types
+              * -> Warum sind Types gut?
             </script>
           </aside>
         </section>
         
         <section>
-          <h2>Dynamic typing is wired</h2>
+          <h2>Dynamic typing is weird</h2>
           <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
 "3" + 1     // implicit cast to string
 // > "31"
@@ -105,7 +111,13 @@
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Keine Typen
+              * Merkwürdige Effekte
+              * No1: Klassiker
+              * No2: ???
+              * Außerdem, ohne Typen:
+                * Struktur der Objekte
+                * Refactoring
+              * -> Was TS, Warum hilft es?
             </script>
           </aside>
         </section>
@@ -115,14 +127,15 @@
           <ul style="font-size: 200%;">
             <li class="fragment">ECMAScript 2016</li>
             <li class="fragment">Type system</li>
-            <li class="fragment">Compiles to ES5</li>
+            <li class="fragment">Compiles to JavaScript</li>
           </ul>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * ECMAScript 2016
-              * Viele Feature unterstützt
-              * Typensystem
-              * Compiles to ES5
+              * 3 Eigenschaften:
+                * ECMAScript 2016
+                * Typensystem
+                * Compiles to ES5
+              * -> Wie sieht es aus?
             </script>
           </aside>
         </section>
@@ -140,9 +153,12 @@ let n: number = 3;
           </div>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Hinweis: let
-                * Bekannt?
+              * Klassische Variable
+                * Keine Typen
               * TypeScript mit Typen
+                * `let` bekannt?
+                * Compiler kennt Typen
+              * -> Typen sind gut!
             </script>
           </aside>
         </section>
@@ -163,6 +179,12 @@ n = "foobar";
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Viele Vorteile
+                * Korrekte Zuweisung
+                * Korrekte Verwendung
+              * Fehler:
+                * NICHT zur Laufzeit
+                * Compiletime
+              * -> Früh erkennen
             </script>
           </aside>
         </section>
@@ -172,9 +194,14 @@ n = "foobar";
           <img src="images/intellij-error.png" alt="intellij" style="width: 100%;"/>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Kompilierzeit
-              * IDE
-              * Nicht zur Laufzeit
+              * IDE Support:
+                * IntelliJ
+                * Eclipse
+                * NetBeans???
+                * WebStorm!!
+                * Visual Studio Code!!
+              * Dev Experience -> Java
+              * -> ....
             </script>
           </aside>
         </section>
@@ -267,6 +294,7 @@ a = document.getElementById( "foobar" );
             <script type="text/template">
               * Wie Object in Java
               * Hat durchaus Verwendung
+              * -> Type assertions
             </script>
           </aside>
         </section>
@@ -284,7 +312,15 @@ let value: any = "Christian";
 
 (value as string).substring( 0, 5 );
 // > "Chris"
-</code></pre>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wie Java: Casting
+              * Oft wenn mehr über Typ bekannt ist.
+              * zwei Varianten
+              * -> Type Inference
+            </script>
+          </aside>
         </section>
         
         <section>
@@ -300,16 +336,17 @@ n = "foobar";
 let n = null;       // inferred type is 'any'
 if( something ) {
   n = 42;           // OK
-  n = "foobar";     // Also OK :-(
+  n = "foobar";     // OK? :-(
 }
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Typenangabe oft optional
-              * Besonders bei Variablen
-              * Nur sofortige Initialisierung
-              * ---
-              * `noImplicitAny`
+              * Typ optional
+              * Variables!
+              * Bei sofortiger Initialisierung
+              * "Spät deklarieren, früh initialisieren"
+              * AAABER:
+              * -> `noImplicitAny`
             </script>
           </aside>
         </section>
@@ -333,6 +370,8 @@ if( something ) {
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Fehler bei implizitem `any`
+              * Beispiel #1
+              * Beispiel #2
               * Für neue Projekte immer setzen!
             </script>
           </aside>
@@ -356,13 +395,8 @@ t = true;
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Mächtiges Typensystem
-              * Beispiel Union
+              * Beispiel Union Typ
               * Gut für: Selektor|Element|JQuery
-              * Weiteres 
-                * Intersection Types
-                * Type Aliases
-                * String Literal Types (2.0?)
-                * Discriminated Unions (2.0)
             </script>
           </aside>
         </section>
@@ -385,6 +419,14 @@ mode = "foobar";
          </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
+              * Außerdem "Typ Alias"
+                * Praktisch für Union
+              * String Literal Typ
+                * String mit festen Werten
+              * Weiteres:
+                * Intersection Types
+                * ... Weiteres
+              * -> Functions
             </script>
           </aside>
         </section>
@@ -393,7 +435,7 @@ mode = "foobar";
           <h1>Functions</h1>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Funktionen wichtig!
+              * Funktionen zentral!
               * Typisierte Funktionen?
             </script>
           </aside>
@@ -451,8 +493,9 @@ formatMoney( 42, "$" );
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Nicht in Java
-              * Ähnlich: null übergeben
+              * Parameter = Pflicht (!= JS)
+              * Optional geht auch
+              * Java: null übergeben
             </script>
           </aside>
         </section>
@@ -476,7 +519,8 @@ formatMoney( 42, "$" );
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Nicht in Java
+              * Meist einfacher
+              * Nicht in Java!
               * Java: Mehrere Methoden :(
             </script>
           </aside>
@@ -509,8 +553,9 @@ interface Money {
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Beispiel Objekt
-              * Wie typisieren
+              * Wie typisieren???
               * Interface definiert Struktur
+              * -> Verwendung...
             </script>
           </aside>
         </section>
@@ -564,8 +609,9 @@ money.asString();     // > 42.00€
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Properties -> Funktionen
+              * **Properties -> Funktionen**
               * Definieren der Signatur
+              * Typisierter Aufruf
               * -> Anonym, geht auch anders
             </script>
           </aside>
@@ -590,7 +636,7 @@ money.asString();     // > 42.00€
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Interface definiert Funktion
+              * **Interface beschreibt Funktion**
               * Verwendung im Interface
               * Implementierung wie vorher
               * -> Interface Vererbung
@@ -618,13 +664,14 @@ interface Money extends Printable {
             <script type="text/template">
               * Interfaces können erben
               * Wie in Java
+              * -> Structural Subtyping
             </script>
           </aside>
         </section>
 
         <section>
           <h2>Structural Subtyping</h2>
-          <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="typescript" data-trim>
 interface Foo {
   value: number;
 }
@@ -641,9 +688,10 @@ let bar: Bar = foo;   // OK
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Eher überraschend für Java Devs
+              * Eher überraschend 
               * Interface benennt Struktur
               * Maßgebend ist aber Struktur
+              * **Beispiel!!!**
               * -> Klassen
             </script>
           </aside>
@@ -708,9 +756,9 @@ let money = new Money( 42, "€" );
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Frage: Wer hat sowas schon mal gesehen?
-              * Java Devs sollten es verstehen
-              * Reines ECMAScript!!!
+              * Frage: Schon mal gesehen?
+              * Verständlich?
+              * Reines ECMAScript 2015!!!
               * -> Wie TypeScript
             </script>
           </aside>
@@ -738,9 +786,9 @@ class Money {
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Fast genau so, Unterschied:
-                * Properties definiert
-                * Typen bei Konstruktur
-                * Bei asString
+                * **Properties** definiert
+                * Typen bei **Konstruktur**
+                * Bei **asString**
               * Properties: Public by default
               * -> Read only properties (TS2)
             </script>
@@ -770,7 +818,8 @@ class Money {
             <script type="text/template">
               * Neu in TypeScript 2.0
               * Final in Java
-              * ---
+              * Syntax Highlight / IDE Support
+              * -
               * Bekanntes Pattern: Const -> Prop
               * -> Spezieller Syntax
             </script>
@@ -796,7 +845,7 @@ class Money {
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Keine Properties definiert
-              * Regel: Schlüsselwort in Konstruktor
+              * Regel: **Schlüsselwort** in Konstruktor
               * Bekannt aus Ruby
               * IMO fragwürdig
               * -> Interfaces
@@ -854,9 +903,9 @@ class Money implements Printable {
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Modulsystem
-              * Schon lange in TypeScript
-              * ECMAScript 2015 nachgezogen
-              * Seit 1.5 angeglichen
+              * **Schon lange** in TypeScript
+              * ECMAScript 2015 **nachgezogen**
+              * Seit 1.5 **angeglichen**
               * -> So sieht es aus
             </script>
           </aside>
@@ -1069,9 +1118,9 @@ numbers.filter( n => n % 2 );
         </section>
         
         <section>
-          <h1>TypeScript REPL</h1>
-          <img src="images/repl.png" alt="img" width="950" />
-          <a href="http://www.typescriptlang.org/play/#src=function%20formatEuro(%20value%3A%20number%20)%20%7B%0D%0A%20%20return%20value.toFixed( 2 )%20%2B%20%22%E2%82%AC%22%3B%0D%0A%7D">
+          <h2>TypeScript REPL</h2>
+          <img src="images/repl.png" alt="img" style="width: 100%; margin: 0;" />
+          <a href="http://www.typescriptlang.org/play/#src=class%20Greeter%20%7B%0D%0A%0D%0A%20%20greeting%3A%20string%3B%0D%0A%0D%0A%20%20constructor(message%3A%20string)%20%7B%0D%0A%20%20%20%20this.greeting%20%3D%20message%3B%0D%0A%20%20%7D%0D%0A%0D%0A%20%20greet()%20%7B%0D%0A%20%20%20%20return%20%22Hello%2C%20%22%20%2B%20this.greeting%3B%0D%0A%20%20%7D%0D%0A%0D%0A%7D%0D%0A">
             http://www.typescriptlang.org/play/
           </a>
           <aside class="notes" data-markdown>
@@ -1082,29 +1131,29 @@ numbers.filter( n => n % 2 );
         </section>
 
         <section>
-          <h1>Java Integration</h1>
-            <a href="https://github.com/chkal/frontend-boilerplate">
-              https://github.com/chkal/frontend-boilerplate
-            </a>
-            <ul style="padding-top: 1em;">
-              <li class="fragment">Apache Maven</li>
-              <li class="fragment">node.js / npm</li>
-              <li class="fragment">Webpack / TypeScript</li>
-              <li class="fragment">Karma / Jasmine</li>
-            </ul>
-            <aside class="notes" data-markdown>
-              <script type="text/template">
-                * Problem:
-                  * Zwei Welten
-                  * JavaScript vs Java Tooling
-                * Integation:
-                  * Installation von Node
-                  * Webpack Module Bundler
-                  * Testing
-                * Besonders Feature:
-                  * Dev Experience
-              </script>
-            </aside>
+          <h2>Java Integration</h2>
+          <a href="https://github.com/chkal/frontend-boilerplate">
+            https://github.com/chkal/frontend-boilerplate
+          </a>
+          <ul style="padding-top: 1em;">
+            <li class="fragment">Apache Maven</li>
+            <li class="fragment">node.js / npm</li>
+            <li class="fragment">Webpack / TypeScript</li>
+            <li class="fragment">Karma / Jasmine</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Problem:
+                * Zwei Welten
+                * JavaScript vs Java Tooling
+              * Integation:
+                * Installation von Node
+                * Webpack Module Bundler
+                * Testing
+              * Besonders Feature:
+                * Dev Experience
+            </script>
+          </aside>
         </section>
 
         <section>

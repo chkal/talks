@@ -1,0 +1,1482 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>JavaScript im Jahr 2017</title>
+
+    <meta name="description" content="JavaScript im Jahr 2017">
+    <meta name="author" content="Christian Kaltepoth">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="custom/custom.css">
+    <!--
+    <link rel="stylesheet" href="custom/invert.css">
+    -->
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!--
+    <link rel="stylesheet" href="custom/github.min.css">
+    -->
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h1>JavaScript</h1>
+					<h2>im Jahr 2017</h2>
+          <p>
+            <a href="http://blog.kaltepoth.de">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </p>
+          Slides:
+          <a href="http://bit.ly/javaland-js2017">
+            http://bit.ly/javaland-js2017
+          </a>
+        </section>
+
+        <section>
+          <h2>Christian Kaltepoth</h2>
+          <h2>Senior Developer @ ingenit</h2>
+          <p>
+            <a href="mailto:christian@kaltepoth.de">christian@kaltepoth.de</a> / <a href="https://twitter.com/chkal">@chkal</a>
+          </p>
+          <p>
+            <a href="http://blog.kaltepoth.de">http://blog.kaltepoth.de</a>
+          </p>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ingenit
+                * Dortmund
+                * Webbasierte Unternehmensanw.
+                * Hinter Firewall
+                * Java EE + JavaScript
+              * Open Source
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>JavaScript</h1>
+          <h2>aka</h2>
+          <h1>ECMAScript</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * JavaScript
+                * Ursprünglicher Name
+                * Netscape
+                * Trademark - Sun/Oracle
+              * ECMAScript
+                * ECMA Standard / ISO
+                * SpiderMonkey, V8, JScript/Chakra, ActionScript
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>History</h2>
+          <ul>
+            <li class="fragment hl-current">ECMAScript 1: 1997</li>
+            <li class="fragment hl-current">ECMAScript 2: 1998 (alignment)</li>
+            <li class="fragment hl-current">ECMAScript 3: 1999 (regex, exceptions, ...)</li>
+            <li class="fragment hl-current">ECMAScript 4: killed in 2007</li>
+            <li class="fragment hl-current">ECMAScript 5: 2009 (strict mode, JSON, ...)</li>
+            <li class="fragment hl-current">ECMAScript 6: 2015 (major update)</li>
+            <li class="fragment hl-current">ECMAScript 7: 2016 (very small update)</li>
+            <li class="fragment hl-current">ECMAScript 8: 2017 (WIP)</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * 1, 2, 3
+              * Pause
+              * 4: Abbruch
+              * 5; Minimale Änderungen
+              * 6: Harmony / 2015
+              * 7: 2016 (exponentiation operator includes for Arrays)
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Show me code!</h1>
+        </section>
+
+        <section>
+          <h1>Block Scope</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Selbstverständlich für Java Devs?
+              * JavaScript ist anders...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5 Scoping</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+function someFunction() {
+
+  for( var i = 0; i < 4; i++ ) {
+    var j = i * i;
+  }
+
+  console.log( j );
+  // > ?
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Was passiert?
+                * Fehler?
+                * Fehlerfrei?
+              * Antwort: 9
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5 Hoisting</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+function someFunction() {
+
+  var j;  // hoisting
+
+  for( var i = 0; i < 4; i++ ) {
+    j = i * i;
+  }
+
+  console.log( j );
+  // > 9
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Hosting
+                * Dekl. -> Scope Anfang
+              * Scopes
+                * Funktionen
+                * KEINE Blöcke
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Immediately-Invoked Function Expression (IIFE)</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+(function() {
+
+  var secret = 42;
+
+})();
+
+console.log( secret );
+// > ReferenceError: secret is not defined
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Lösung ES5
+                * IIFE
+                * Künstlicher Block-Scope
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Block Scope</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+function someFunction() {
+
+  for( let i = 0; i < 4; i++ ) {
+    let j = i * i;
+  }
+
+  console.log( j );
+  // > ReferenceError: j is not defined
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ES2015
+                * let statt var
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Constants</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const users = [ "Christian" ];
+
+users.push( "Jim" );
+// > 2
+
+users = [ "Bob" ];
+// > SyntaxError: "users" is read-only
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * const
+                * Wie `let`
+                * Kein Hosting
+                * Block Scope
+                * Konstante
+              * Java: `final`
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Recommendation</h1>
+          <ul style="font-size: 200%; list-style-type: none;">
+            <li class="fragment hl-current">1. <code>const</code></li>
+            <li class="fragment hl-current">2. <code>let</code></li>
+            <li class="fragment hl-current">3. <code style="text-decoration: line-through;">var</code> (ignore)</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Tipp:
+                * Meist `const` sinnvoll
+                * Beweis in diesem Talk
+                * `let` nur falls veränderbar
+              * SEHR häufig
+              * Var. Wiederverw.
+                * Anti-Pattern
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <img src="images/const-not-war-2.jpg" style="height: 650px; margin: 0;">
+          <div style="font-size: 50%;">
+            Source:&#160;<a href="https://twitter.com/andreysitnik/status/792697579712675840">
+              https://twitter.com/andreysitnik/status/792697579712675840
+            </a>
+          </div>
+        </section>
+
+        <section>
+          <h1>Arrow Functions</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Funktonen bisher...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5 Functions</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+
+numbers.filter( function( n ) {
+  return n % 2 !== 0;
+} );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Beispiel: Ungerade Zahlen
+              * Higher Order Functions
+              * Probleme
+                * `function` keyword
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Arrow Functions</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+numbers.filter( n => {
+  return n % 2 !== 0;
+} );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+numbers.filter( n => n % 2 !== 0 );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+numbers.filter( n => n % 2 );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Gleiches Beispiel
+              * Block #1:
+                * Arrow syntax
+                * Ähnlich Java Lamda
+              * Block #2:
+                * 1 Statement -> Kein {} und ;
+              * Block #3:
+                * Zahl != 0 -> Truthy
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5 Callbacks</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var ClickCounter = function() {
+
+  this.count = 0;
+
+  var _this = this;   // save 'this'
+  $( "#some-button" ).click( function() {
+    _this.count++;
+  } );
+
+};
+
+var obj = new ClickCounter();
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * `this` vom Kontext abhängig
+              * Workaround:
+                * Referenz sichern
+                * Boilerplate!
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Callbacks</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var ClickCounter = function() {
+
+  this.count = 0;
+
+
+  $( "#some-button" ).click( () => {
+    this.count++;
+  } );
+
+};
+
+var obj = new ClickCounter();
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Lexical `this` binding
+              * Position im Source entscheidet
+            </script>
+          </aside>
+        </section>
+
+<!--
+        <section>
+          <h1>Object Literals</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Syntax Sugar
+              * Kein großes Feature
+              * Aber häufig genutzt
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5 Object Literal</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var lastname = "Kaltepoth";
+
+var person = {
+  firstname: "Christian",
+  lastname: lastname,
+  greet: function() {
+    return "Hello " + this.firstname + " "
+        + this.lastname;
+  }
+};
+          </code></pre>
+          <script type="text/template">
+            * Object literal
+          </script>
+        </section>
+
+        <section>
+          <h2>ES2015 Enhanced Object Literal</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const lastname = "Kaltepoth";
+
+const person = {
+  firstname: "Christian",
+  lastname,
+  greet() {
+    return "Hello " + this.firstname + " "
+        + this.lastname;
+  }
+};
+          </code></pre>
+          <script type="text/template">
+            * Simpler version
+          </script>
+        </section>
+-->
+        
+        <section>
+          <h1>Template Strings</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Sehr häufig genutzt
+              * Bekannt aus Groovy
+              * Java bisher nicht
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5 String Concatenation</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var name = "Christian";
+var count = 213;
+
+var message = "Hello " + name + ", you have "
+    + count + " unread messages.";
+
+console.log( message );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Stringbau per +
+              * Frage:
+                * Wer macht das so?
+                * Wer will was Bessers?
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Template Strings</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const name = "Christian";
+const count = 213;
+
+const message =
+    `Hello ${name}, you have ${count} messages.`;
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const html =
+    `<h1>Hello ${name}</h1>
+     <p>
+       You have ${count} unread messages
+     </p>`;
+
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Block 1:
+                * Unterschiede:
+                  * Backtick als Delimiter
+                  * EL-Ausdrücke in String
+                * -> Besser lesbar
+              * Block 2:
+                * Multiline Strings
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Template Strings</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const name = "Christian";
+const count = 213;
+const total = 500;
+
+const greeting =
+    `Hello ${name.toUpperCase()}!`;
+
+const message =
+    `Unread ratio: ${ 100 * count / total }%`;
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Nicht nur Variablen
+              * Methodenaufrufe
+              * Komplexe Ausdrücke
+              * <u>Also:</u>
+                * Wunschliste für Java
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Collection Types</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Java:
+                * selbstverständlich
+                * JDK 1.2 - 1998 (16j)
+              * JavaScript:
+                * Neu
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Sets</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const tags = new Set();
+
+tags.add( "java" );
+tags.add( "javascript" );
+tags.add( "java" );
+
+tags.size === 2;
+// > true
+
+tags.has( "java" );
+// > true
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher:
+                * Gab es nicht!
+              * Jetzt:
+                * Wie Java Sets
+                * Method Chaining
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Maps</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const map = new Map();
+
+map.set( "hello", 42 );
+
+map.size === 1;
+// > true
+
+map.get( "hello" );
+// > 42
+
+map.delete( "hello" );
+// > true
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher:
+                * Objekte
+              * Jetzt
+                * Wie Java Maps
+                * Nicht nur String als Key
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5 Iteration</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var primes = [ 3, 5, 7, 11, 13 ];
+
+for( var i = 0; i &lt; primes.length; i++ ) {
+  console.log( primes[i] );
+}
+
+// ES5
+primes.forEach( function( n ) {
+  console.log( n );
+} );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Iteration
+              * ES3:
+                * for-Schleife mit Zähler
+              * ES5:
+                * Funktionale Iteration
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 for..of</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+// arrays
+const primes = [ 3, 5, 7, 11, 13 ];
+for( let p of primes ) {
+  console.log( p );
+}
+
+// collections
+const set = new Set();
+set.add( "foo" );
+set.add( "bar" );
+for( let s of set ) {
+  console.log( s );
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Jetzt:
+                * `for..of` Loop
+                * Wie Java `for-each`
+                * Arrays + `Iterable`
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Default &amp; Rest Params</h1>
+<!--          <h1>Spread Operator</h1>-->
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Gruppe von Features
+                * Parameter
+                * Deklarationen
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Default Parameter</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+function formatMoney( value, currency = "$" ) {
+  return value.toFixed( 2 ) + currency;
+}
+
+formatMoney( 42.99, "€" );
+// > 42.99€
+
+formatMoney( 42.99 );
+// > 42.99$
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Jetzt
+                * Optionaler Parameter
+                * Default Value
+              * Bisher
+                * `arguments` Array
+              * Aus C# / PHP?
+              * Java
+                * Mehrere Methoden :(
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Rest Parameter</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+function format( message, ...params ) {
+  for( let p of params ) {
+    message = message.replace( /\?/, p );
+  }
+  return message;
+}
+
+format( "Die Summe von ? und ? ist ?", 3, 7, 10 );
+// > Die Summe von 3 und 7 ist 10
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Java:
+                * Varargs
+              * JavaScript:
+                * Ähnlich
+                * Achtung: Punkte vor Var
+              * Beispiel:
+                * `String.format()`
+            </script>
+          </aside>
+        </section>
+
+        <!--
+        <section>
+          <h2>Spread Operator</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+console.log( Math.max( 1, 5, 2, 3 ) );
+// > 5
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const numbers = [ 1, 5, 2, 3 ];
+
+console.log( Math.max(...numbers) );
+// > 5
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Gegenteil von Rest
+              * Java:
+                * Geht bei Varargs
+              * JavaScript
+                * Bei ALLEN Funktionen
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Destructuring</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const text = "a,b,c,d,e";
+
+console.log( text.split( /,/ ) );
+// > ["a", "b", "c", "d", "e"]
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const [ first, second ] = text.split( /,/ );
+
+console.log( first );      // > "a"
+console.log( second );     // > "b"
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ...
+            </script>
+          </aside>
+        </section>
+-->
+
+        <section>
+          <h1>Classes</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Oft als wichtigstes Feature genannt
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES5: Constructor Functions</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var Person = function( name ) {
+  this.name = name;
+}
+
+Person.prototype.greet = function() {
+  return "Hello " + this.name;
+}
+
+var christian = new Person( "Christian" );
+
+christian.greet();   // > Hello Christian
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Constructor Function
+                * Convention: uppercase
+              * Prototype:
+                * Methoden ( + Properties )
+              * Alternative
+                * `Object.create()`
+            </script>
+          </aside>
+        </section>
+
+        <!--
+        <section>
+          <h2>ES5: Object.create()</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var Person = {
+  greet: function() {
+    return "Hello " + this.name;
+  }
+};
+
+var christian = Object.create( Person, {
+  name: {
+    value: "Christian"
+  }
+} );
+
+christian.greet();   // > Hello Christian
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ...
+            </script>
+          </aside>
+        </section>
+-->
+        <section>
+          <h2>ES2015 Classes</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+class Person {
+
+  constructor( name ) {
+    this.name = name;
+  }
+
+  greet() {
+    return "Hello " + this.name;
+  }
+}
+
+const christian = new Person( "Christian" );
+
+christian.greet();   // > Hello Christian
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wow! Klassen!
+              * Bekannte Struktur
+              * ABER:
+                * Nur Syntax Sugar
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2015 Inheritance</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+class Developer extends Person {
+
+  constructor( name, languages ) {
+    super( name );
+    this.languages = languages;
+  }
+
+  getLanguages() {
+    return this.languages.join( ", " );
+  }
+}
+
+const christian = new Developer( 
+    "Christian", [ "Java", "JavaScript" ] 
+);
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher:
+                * Vererbung schwierig
+              * Jetzt:
+                * Deutlich einfacher
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Modules</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * IMO Bestes Feature!
+              * Strukturierung wie Java
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Export / Import</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+// math.js
+export function max( a, b ) {
+  return a > b ? a : b;
+}
+
+export const PI = 3.14156;
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+import { max, PI } from "./math.js";
+
+max(9, 13) === 13;       // > true
+PI === 3.14156;          // > true
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Block #1
+                * Expliziter Export
+                * Java: `public`
+              * Block #2
+                * Import aus anderen Dateien
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Export / Import</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+// math.js
+export function max( a, b ) {
+  return a > b ? a : b;
+}
+
+export const PI = 3.14156;
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+import * as math from "./math.js";
+
+math.max(9, 13) === 13   // > true
+math.PI === 3.14156      // > true
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Block #2
+                * Alles importieren
+                * Benanntes Object
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Default Exports</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+// person.js
+export default class Person {
+
+  constructor( name ) {
+    this.name = name;
+  }
+
+}
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+import Person from "./person.js";
+
+const christian = new Person( "Christian" );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Block #1
+                * Neben `export` auch `default`
+                * Oft für Klassen
+              * Block #2
+                * Ohne Klammern
+                * Umbenennung möglich
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h1>Promises</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Asynchronität in den Griff bekommen
+              * JavaScript Callbacks
+                * AJAX
+                * Event Handler
+              * -> Callback Hell
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Callback Hell</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+asyncFunc1( function () {
+  asyncFunc2( function () {
+    asyncFunc3( function () {
+      asyncFunc4( function () {
+            
+        // :-(
+            
+      } );
+    } );
+  } );
+} );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Tiefe Verschacheltung
+              * Schwer zu verstehen.
+              * -
+              * Idee:
+                * Statt Callback
+                * Promise / Versprechen
+                * Java: CompletableFuture
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Promise</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const promise = asyncFunc();
+
+promise.then( result => {
+  // handle success
+} );
+
+promise.catch( error => {
+  // handle error
+} );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Kein Callback
+              * Return Promise
+              * Registrierung von Callbacks
+              * -
+              * Schön: Chaining
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Chaining Promises</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+asyncFunc1()                      // Step #1
+  .then( result1 => {
+    return asyncFunc2();          // Step #2
+  } )
+  .then( result2 => {
+    return asyncFunc3();          // Step #3
+  } )
+  .then( result3 => {
+    // handle final result
+  } )
+  .catch( error => {
+    // handle all errors
+  } );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Chaining
+              * Zentrales Error Handling
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+navigator.geolocation.getCurrentPosition(
+  function( position ) {
+    // handle success
+  },
+  function( error ) {
+    // handle error
+  }
+);
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Klassische API
+              * Keine Promises
+              * Nur Callbacks
+              * -
+              * -> Promises
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+
+
+    
+     
+
+      
+      
+
+      
+    
+            
+  
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Keine Callbacks
+              * Promise
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( 
+
+    
+     
+
+      
+      
+
+      
+    
+            
+    );
+}
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( ( resolve, reject ) => {
+
+    
+     
+
+      
+      
+
+      
+    
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( ( resolve, reject ) => {
+
+    navigator.geolocation.getCurrentPosition(
+      position => {
+
+      },
+      error => {
+
+      }
+    );
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function requestPosition() {
+            
+  return new Promise( ( resolve, reject ) => {
+
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        resolve( position.coords );
+      },
+      error => {
+        reject( error );
+      }
+    );
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Example: HTML5 Geolocation API</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+requestPosition().then( coords => {
+
+    console.log( "Position: " + coords );
+
+  } )
+  .catch( error => {
+
+    console.log( "Failed!" );
+
+  } );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Liest sich schön
+              * Error Handling optional
+            </script>
+          </aside>
+        </section>
+
+        <!--
+        <section>
+          <h1>Generators</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Letztes Feature
+              * Exotisch für Java Devs
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Generators</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+function* sequence( max ) {
+  let i = 1;
+  while( i <= max ) {
+    yield i;
+    i++;
+  }
+}
+
+let gen = sequence( 3 );
+
+gen.next(); // > { value: 1, done: false }
+gen.next(); // > { value: 2, done: false }
+gen.next(); // > { value: 3, done: false }
+gen.next(); // > { value: undefined, done: true }
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Function
+                * Mit `*` Zusatz
+                * `yield` wie `return`
+                * Mit Rücksprung
+              * Benutzung
+                * Aufruf -> `Generator`
+              * <u>Next:</u>
+                * `Iterable`
+                * `Iterator`
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Generators</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+function* sequence( max ) {
+  let i = 1;
+  while( i <= max ) {
+    yield i;
+    i++;
+  }
+}
+
+for( let i of sequence(10) ) {
+  console.log(i);
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Function
+                * Config Argument
+              * Benutzung
+                * Generator ist `Iterable`
+                * Direkte Nutzung von `for..of`
+              * <u>Außerdem</u>
+                * Async -> Sync
+            </script>
+          </aside>
+        </section>
+        -->
+        
+        <section>
+          <h1>And what about ES2016?</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher ES2015
+              * Und ES2016?
+              * -> Wenig
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>New in ES2016</h2>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+Math.pow( 3, 2 );       // ES2015
+// > 9
+
+3 ** 2                  // ES2016
+// > 9
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+const numbers = [ 1, 2, 4, 8 ];
+
+numbers.includes( 2 );      // > true
+
+numbers.includes( 3 );      // > false
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Potenzieren?
+              * -
+              * Arrays
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>TC39 Process</h2>
+          <ul>
+            <li class="fragment">
+              Frequent releases (yearly)
+            </li>
+            <li class="fragment">
+              Feature stages:
+              <ul>
+                <li>Stage 0: Strawman</li>
+                <li>Stage 1: Proposal</li>
+                <li>Stage 2: Draft</li>
+                <li>Stage 3: Candidate</li>
+                <li>Stage 4: Finished</li>
+              </ul>
+            </li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Stages:
+                * 0 - idea
+                * 1 - working on. (12)
+                * 2 - initial spec. (9)
+                * 3 - initial browser impls. (6)
+                * 4 - done
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Can I use this stuff?</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Viele schöne Features
+              * Kann man es heute benutzen
+              * Funktioniert das in IE8? :)
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3 style="margin: 0;">ES2015 Compatibility</h3>
+          <a href="https://kangax.github.io/compat-table/es6/">
+            <img src="images/es2015-compatibility.png" alt="img" style="width: 100%;" />
+          </a>
+          <h3 style="margin: 10px 0 0 0;">ES2016 Compatibility</h3>
+          <a href="https://kangax.github.io/compat-table/es2016plus/">
+            <img src="images/es2016-compatibility.png" alt="img" style="width: 100%;" />
+          </a>
+          <div style="font-size: 50%; text-align: right;">
+            Source:&#160;<a href="https://kangax.github.io/compat-table/">
+            https://kangax.github.io/compat-table/
+            </a>
+          </div>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Strg-Shift-Click
+              * Strg-W
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Babel REPL</h2>
+          <img src="images/babel.png" alt="img" style="width: 100%;" />
+          <a href="https://babeljs.io/repl/#?experimental=false&evaluate=true&loose=false&spec=false&code=%0Alet%20numbers%20%3D%20%0A%20%20%5B%201%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%20%5D%3B%0A%0Alet%20odd%20%3D%20numbers.filter(%20n%20%3D%3E%20n%20%25%202%20)%3B%0A%0Aconsole.log(%20%60Count%3A%20%24%7Bodd.length%7D%60%20)%3B%0A">
+            https://babeljs.io/repl/
+          </a>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Strg-Shift-Click
+              * Strg-W
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Java Integration</h1>
+          <a href="https://github.com/chkal/frontend-boilerplate">
+            https://github.com/chkal/frontend-boilerplate
+          </a>
+          <ul style="padding-top: 1em;">
+            <li class="fragment">Apache Maven</li>
+            <li class="fragment">node.js / npm</li>
+            <li class="fragment">Webpack / Babel / TypeScript</li>
+            <li class="fragment">Karma / Jasmine</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Zwei Welten:
+                * JavaScript vs Java
+              * Integration:
+                * Installation von Node
+                * Webpack Module Bundler
+                * Testing
+              * Besonderes Feature:
+                * Dev Experience
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+          <h2>Questions?</h2>
+          <div class="mono" style="margin-top: 6%;">
+            <a href="http://bit.ly/javaland-js2017">
+              http://bit.ly/javaland-js2017
+            </a>
+          <div class="mono" style="margin-top: 1%;">
+          </div>
+            <a href="https://github.com/chkal/frontend-boilerplate">
+              https://github.com/chkal/frontend-boilerplate
+            </a>
+          </div>
+          <div style="margin-top: 5%;">
+            <a href="http://blog.kaltepoth.de/">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        overview: false,
+        slideNumber: true,
+        margin: 0.05,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

@@ -102,14 +102,14 @@
         <section>
           <h2>History</h2>
           <ul>
-            <li class="fragment hl-current">ECMAScript 1: 1997</li>
-            <li class="fragment hl-current">ECMAScript 2: 1998 (alignment)</li>
-            <li class="fragment hl-current">ECMAScript 3: 1999 (regex, exceptions, ...)</li>
+            <li class="fragment hl-current">ECMAScript 1 (1997): first release</li>
+            <li class="fragment hl-current">ECMAScript 2 (1998): alignment</li>
+            <li class="fragment hl-current">ECMAScript 3 (1999): regex, exceptions, ...</li>
             <li class="fragment hl-current">ECMAScript 4: killed in 2007</li>
-            <li class="fragment hl-current">ECMAScript 5: 2009 (strict mode, JSON, ...)</li>
-            <li class="fragment hl-current">ECMAScript 6: 2015 (major update)</li>
-            <li class="fragment hl-current">ECMAScript 7: 2016 (very small update)</li>
-            <li class="fragment hl-current">ECMAScript 8: 2017 (WIP)</li>
+            <li class="fragment hl-current">ECMAScript 5 (2009): strict mode, JSON, ...</li>
+            <li class="fragment hl-current">ECMAScript 2015: major update!</li>
+            <li class="fragment hl-current">ECMAScript 2016: exp. operator, ...</li>
+            <li class="fragment hl-current">ECMAScript 2017: async functions, ...</li>
           </ul>
           <aside class="notes" data-markdown>
             <script type="text/template">
@@ -123,9 +123,11 @@
           </aside>
         </section>
 
+        <!--
         <section>
           <h1>Show me code!</h1>
         </section>
+        -->
 
         <section>
           <h1>Block Scope</h1>
@@ -147,7 +149,7 @@ function someFunction() {
   }
 
   console.log( j );
-  // > ?
+  // > 9
 
 }
           </code></pre>
@@ -161,6 +163,7 @@ function someFunction() {
           </aside>
         </section>
 
+        <!--
         <section>
           <h2>ES5 Hoisting</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -187,6 +190,7 @@ function someFunction() {
             </script>
           </aside>
         </section>
+        -->
 
         <section>
           <h2>Immediately-Invoked Function Expression (IIFE)</h2>
@@ -274,6 +278,7 @@ users = [ "Bob" ];
           </aside>
         </section>
         
+        <!--
         <section>
           <img src="images/const-not-war-2.jpg" style="height: 650px; margin: 0;">
           <div style="font-size: 50%;">
@@ -282,6 +287,7 @@ users = [ "Bob" ];
             </a>
           </div>
         </section>
+        -->
 
         <section>
           <h1>Arrow Functions</h1>
@@ -342,6 +348,7 @@ numbers.filter( n => n % 2 );
           </aside>
         </section>
 
+        <!--
         <section>
           <h2>ES5 Callbacks</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -391,7 +398,7 @@ var obj = new ClickCounter();
             </script>
           </aside>
         </section>
-
+        -->
 <!--
         <section>
           <h1>Object Literals</h1>
@@ -505,6 +512,7 @@ const html =
           </aside>
         </section>
 
+        <!--
         <section>
           <h2>ES2015 Template Strings</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -528,7 +536,8 @@ const message =
             </script>
           </aside>
         </section>
-
+        --> 
+        
         <section>
           <h1>Collection Types</h1>
           <aside class="notes" data-markdown>
@@ -647,9 +656,9 @@ for( let s of set ) {
           </aside>
         </section>
 
+        <!--
         <section>
           <h1>Default &amp; Rest Params</h1>
-<!--          <h1>Spread Operator</h1>-->
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Gruppe von Features
@@ -658,7 +667,8 @@ for( let s of set ) {
             </script>
           </aside>
         </section>
-
+        -->
+        
         <section>
           <h2>Default Parameter</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -686,6 +696,7 @@ formatMoney( 42.99 );
           </aside>
         </section>
 
+        <!--
         <section>
           <h2>Rest Parameter</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -711,7 +722,7 @@ format( "Die Summe von ? und ? ist ?", 3, 7, 10 );
             </script>
           </aside>
         </section>
-
+        -->
         <!--
         <section>
           <h2>Spread Operator</h2>
@@ -938,6 +949,7 @@ math.PI === 3.14156      // > true
           </aside>
         </section>
 
+        <!--
         <section>
           <h2>Default Exports</h2>
           <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -966,6 +978,7 @@ const christian = new Person( "Christian" );
             </script>
           </aside>
         </section>
+        -->
         
         <section>
           <h1>Promises</h1>
@@ -1057,6 +1070,25 @@ asyncFunc1()                      // Step #1
           </aside>
         </section>
 
+        <section>
+          <h2>Returning Promises</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function asyncFunc() {
+            
+  return new Promise( ( resolve, reject ) => {
+            
+    setTimeout( () => {
+            
+      resolve( "Promise resolved!" );
+            
+    }, 5000);        
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+        <!--
         <section>
           <h2>Example: HTML5 Geolocation API</h2>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
@@ -1213,7 +1245,8 @@ requestPosition().then( coords => {
             </script>
           </aside>
         </section>
-
+        -->
+        
         <!--
         <section>
           <h1>Generators</h1>
@@ -1368,7 +1401,7 @@ numbers.includes( 3 );      // > false
           <a href="https://kangax.github.io/compat-table/es6/">
             <img src="images/es2015-compatibility.png" alt="img" style="width: 100%;" />
           </a>
-          <h3 style="margin: 10px 0 0 0;">ES2016 Compatibility</h3>
+          <h3 style="margin: 10px 0 0 0;">ES2016 + ES2017 Compatibility</h3>
           <a href="https://kangax.github.io/compat-table/es2016plus/">
             <img src="images/es2016-compatibility.png" alt="img" style="width: 100%;" />
           </a>
@@ -1405,10 +1438,10 @@ numbers.includes( 3 );      // > false
             https://github.com/chkal/frontend-boilerplate
           </a>
           <ul style="padding-top: 1em;">
-            <li class="fragment">Apache Maven</li>
-            <li class="fragment">node.js / npm</li>
-            <li class="fragment">Webpack / Babel / TypeScript</li>
-            <li class="fragment">Karma / Jasmine</li>
+            <li>Apache Maven</li>
+            <li>node.js / npm</li>
+            <li>Webpack / Babel / TypeScript</li>
+            <li>Karma / Jasmine</li>
           </ul>
           <aside class="notes" data-markdown>
             <script type="text/template">

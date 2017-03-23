@@ -103,7 +103,7 @@
           <h2>History</h2>
           <ul>
             <li class="fragment hl-current">ECMAScript 1 (1997): first release</li>
-            <li class="fragment hl-current">ECMAScript 2 (1998): alignment</li>
+            <li class="fragment hl-current">ECMAScript 2 (1998): minor alignment</li>
             <li class="fragment hl-current">ECMAScript 3 (1999): regex, exceptions, ...</li>
             <li class="fragment hl-current">ECMAScript 4: killed in 2007</li>
             <li class="fragment hl-current">ECMAScript 5 (2009): strict mode, JSON, ...</li>
@@ -908,6 +908,7 @@ export function max( a, b ) {
 export const PI = 3.14156;
           </code></pre>
           <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+// foobar.js
 import { max, PI } from "./math.js";
 
 max(9, 13) === 13;       // > true
@@ -935,6 +936,7 @@ export function max( a, b ) {
 export const PI = 3.14156;
           </code></pre>
           <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+// foobar.js
 import * as math from "./math.js";
 
 math.max(9, 13) === 13   // > true
@@ -1001,7 +1003,7 @@ asyncFunc1( function () {
     asyncFunc3( function () {
       asyncFunc4( function () {
             
-        // :-(
+        // OMG!
             
       } );
     } );
@@ -1071,7 +1073,62 @@ asyncFunc1()                      // Step #1
         </section>
 
         <section>
-          <h2>Returning Promises</h2>
+          <h2>Creating Promises</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function asyncFunc() {
+            
+
+            
+
+            
+
+            
+
+            
+
+}
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Creating Promises</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function asyncFunc() {
+            
+  return new Promise( ( resolve, reject ) => {
+            
+
+            
+
+            
+
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Creating Promises</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+function asyncFunc() {
+            
+  return new Promise( ( resolve, reject ) => {
+            
+    setTimeout( () => {
+            
+
+            
+    }, 5000);        
+            
+  } );
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Creating Promises</h2>
           <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
 function asyncFunc() {
             
@@ -1433,7 +1490,7 @@ numbers.includes( 3 );      // > false
         </section>
 
         <section>
-          <h1>Java Integration</h1>
+          <h1>Java Boilerplate</h1>
           <a href="https://github.com/chkal/frontend-boilerplate">
             https://github.com/chkal/frontend-boilerplate
           </a>

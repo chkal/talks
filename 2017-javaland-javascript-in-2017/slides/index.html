@@ -74,8 +74,7 @@
             <script type="text/template">
               * ingenit
                 * Dortmund
-                * Webbasierte Unternehmensanw.
-                * Hinter Firewall
+                * Webbasierte Enterpriseapp.
                 * Java EE + JavaScript
               * Open Source
             </script>
@@ -118,7 +117,8 @@
               * 4: Abbruch
               * 5; Minimale Änderungen
               * 6: Harmony / 2015
-              * 7: 2016 (exponentiation operator includes for Arrays)
+              * 2016: exp. op. + Arrays#includes
+              * 2017: async functions
             </script>
           </aside>
         </section>
@@ -155,10 +155,11 @@ function someFunction() {
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Was passiert?
-                * Fehler?
-                * Fehlerfrei?
-              * Antwort: 9
+              * Unerwartet!
+              * => Hosting
+              * Dekl. -> Anfang Scope
+                * Also Function
+                * KEINE Blöcke
             </script>
           </aside>
         </section>
@@ -231,6 +232,7 @@ function someFunction() {
             <script type="text/template">
               * ES2015
                 * let statt var
+                * Echter Block Scope
             </script>
           </aside>
         </section>
@@ -250,8 +252,7 @@ users = [ "Bob" ];
             <script type="text/template">
               * const
                 * Wie `let`
-                * Kein Hosting
-                * Block Scope
+                  * Block Scoped
                 * Konstante
               * Java: `final`
             </script>
@@ -314,6 +315,7 @@ numbers.filter( function( n ) {
               * Higher Order Functions
               * Probleme
                 * `function` keyword
+                * `this` kontextabhängig
             </script>
           </aside>
         </section>
@@ -544,7 +546,7 @@ const message =
             <script type="text/template">
               * Java:
                 * selbstverständlich
-                * JDK 1.2 - 1998 (16j)
+                * JDK 1.2 - 1998 (19j)
               * JavaScript:
                 * Neu
             </script>
@@ -799,7 +801,7 @@ christian.greet();   // > Hello Christian
                 * Convention: uppercase
               * Prototype:
                 * Methoden ( + Properties )
-              * Alternative
+              * Alternative (ES5)
                 * `Object.create()`
             </script>
           </aside>
@@ -1029,17 +1031,18 @@ asyncFunc1( function () {
 const promise = asyncFunc();
 
 promise.then( result => {
-  // handle success
+  // success (resolved)
 } );
 
 promise.catch( error => {
-  // handle error
+  // failure (rejected)
 } );
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Kein Callback
-              * Return Promise
+              * Kein CB übergeben
+              * Promise = Versprechen
+              * -> Resolve / Reject
               * Registrierung von Callbacks
               * -
               * Schön: Chaining
@@ -1088,6 +1091,11 @@ function asyncFunc() {
 
 }
           </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wie geht das?
+            </script>
+          </aside>
         </section>
 
 
@@ -1378,7 +1386,7 @@ for( let i of sequence(10) ) {
         -->
         
         <section>
-          <h1>And what about ES2016?</h1>
+          <h1>And what about ES2016 / ES2017?</h1>
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Bisher ES2015
@@ -1434,9 +1442,9 @@ numbers.includes( 3 );      // > false
             <script type="text/template">
               * Stages:
                 * 0 - idea
-                * 1 - working on. (12)
-                * 2 - initial spec. (9)
-                * 3 - initial browser impls. (6)
+                * 1 - working on. (18)
+                * 2 - initial spec. (8)
+                * 3 - initial browser impls. (11)
                 * 4 - done
             </script>
           </aside>

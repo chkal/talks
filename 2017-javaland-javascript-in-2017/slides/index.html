@@ -1451,6 +1451,25 @@ numbers.includes( 3 );      // > false
         </section>
 
         <section>
+          <h2>ES2017: Async Functions</h2>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+function asyncFunc() {
+  return new Promise( ( resolve, reject ) => {
+    setTimeout( () => {
+      resolve( "Foobar" );
+    }, 2000);
+  } );
+}
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+async function someFunction() {
+  let result = await asyncFunc();
+  console.log( result );    // > "Foobar"
+}
+          </code></pre>
+        </section>
+        
+        <section>
           <h1>Can I use this stuff?</h1>
           <aside class="notes" data-markdown>
             <script type="text/template">

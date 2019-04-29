@@ -847,13 +847,16 @@ public class ThymeleafController {
         </section>
 
         <section>
-          <h2>Einfache Forms</h2>
+          <h2>Formulare</h2>
           <h4 class="filename">/WEB-INF/views/form.jsp</h4>
           <pre style="width: 100%; font-size: 0.75em;"><code class="html" data-trim>
 &lt;form action="./form" method="POST">
 
   Bitte geben Sie Ihren Namen ein:
-  &lt;input type="text" name="name"/>
+  <input type="text" name="name"/>
+
+  Bitte geben Sie Ihr Alter ein:
+  <input type="text" name="age"/>
 
   &lt;input type="submit" value="Absenden"/>
 
@@ -870,39 +873,7 @@ public class ThymeleafController {
         </section>
         
         <section>
-          <h2>Einfache Forms</h2>
-          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
-@Controller
-@Path("/form")
-public class FormController {
-
-  @Inject
-  private Models models;
-
-  @POST
-  public String post( @FormParam("name") String name ) {
-
-    models.put( "message", "Hello " + name );
-    return "form.jsp";
-
-  }
-
-}
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Standard, außer:
-                * **@POST**
-                * **@FormParam**
-              * Sehr einfach, oder?
-              * vs. **große Forms**
-              * => Alternative
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Komplexe Forms</h2>
+          <h2>Formulare</h2>
           <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
 public class HelloForm {
 
@@ -922,14 +893,13 @@ public class HelloForm {
             <script type="text/template">
               * Eine **Klasse**
               * @Form an **Feldern**
-              * **Skaliert** besser
               * => Controller
             </script>
           </aside>
         </section>
 
         <section>
-          <h2>Komplexe Forms</h2>
+          <h2>Formulare</h2>
           <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
 @Controller
 @Path("/form")
@@ -950,9 +920,11 @@ public class FormController {
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Unterschied:
-                * **@BeanParam**
-              * Dann **Getter**
+
+              * Standard, außer:
+              * **@POST**
+              * **@BeanParam**
+              * Sehr einfach, oder?
               * Also: Forms einfach!
               * => **Validierung**
             </script>
@@ -986,12 +958,13 @@ public class FormController {
           <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
 public class HelloForm {
 
+  @MvcBinding
   @FormParam("name")
-  @Size(min = 3, message = "Geben Sie Ihren Namen ein")
+  @Size(min = 2, message = "Geben Sie Ihren Namen ein")
   private String name;
 
+  @MvcBinding
   @FormParam("age")
-  @NotNull(message = "Geben Sie Ihr Alter ein")
   @Min(value = 18, message = "Sie müssen 18 Jahre sein")
   private Integer age;
 
@@ -1098,10 +1071,11 @@ public class FormController {
 
         <section>
           <h2>CSRF Beispiel</h2>
-          <h4 class="filename">http://www.bad-guys.com/</h4>
+          <h4 class="filename">http://www.hacked.com/</h4>
           <pre style="width: 100%; font-size: 0.7em;" class="fragment"><code class="html" data-trim>
-&lt;form id="form" style="display: none;" method="POST"
-      action="https://www.example.com/tweet">
+&lt;form id="form" method="POST"
+      action="https://www.example.com/tweet"
+      style="display: none;">
   &lt;input type="text" name="status"
          value="PHP ist die beste Sprache der Welt!"/>
 &lt;/form>
@@ -1129,7 +1103,7 @@ public class FormController {
           <h1>Page Token Pattern</h1>
           <ul style="font-size: 140%;">
             <li class="fragment">Server erstellt geheimes Token</li>
-            <li class="fragment">Token wird in Hidden-Field gerendert</li>
+            <li class="fragment">Token wird in Hidden-Field geschrieben</li>
             <li class="fragment">Prüfung des Token bei Submit</li>
           </ul>
           <aside class="notes" data-markdown>
@@ -1149,7 +1123,7 @@ public class FormController {
                 <strong>OFF</strong>
               </td>
               <td>
-                Kein Prüfung (Default)
+                Kein Prüfung
               </td>
             </tr>
             <tr class="fragment">
@@ -1157,7 +1131,7 @@ public class FormController {
                 <strong>EXPLICIT</strong>
               </td>
               <td>
-                Prüfung des Tokens mit @CsrfValid
+                Prüfung des Tokens mit @CsrfProtected
               </td>
             </tr>
             <tr class="fragment">
@@ -1206,7 +1180,7 @@ public class FormController {
         </section>
 
         <section>
-          <h2>Prüfung mit @CsrfValid</h2>
+          <h2>Prüfung mit @CsrfProtected</h2>
           <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
 @Controller
 @Path("/tweet")
@@ -1215,7 +1189,7 @@ public class TweetController {
   /* ... */
 
   @POST
-  @CsrfValid
+  @CsrfProtected
   public String post( @FormParam("status") String s ) {
 
     /* ... */
@@ -1226,7 +1200,7 @@ public class TweetController {
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Bei **EXPLICIT** via **@CsrfValid**
+              * Bei **EXPLICIT** via **@CsrfProtected**
               * Bei **IMPLICIT** automatisch
               * Fehler = 403 Forbidden
             </script>
@@ -1248,8 +1222,8 @@ public class TweetController {
           <h1>MVC kann mehr...</h1>
           <ul style="font-size: 140%;">
             <li class="fragment">Einfache Redirects aus Controller</li>
+            <li class="fragment">Internationalisierung / Lokalisierung</li>
             <li class="fragment">CDI Scope: @RedirectScoped</li>
-            <li class="fragment">MvcContext / #{mvc}</li>
             <li class="fragment">CDI Events</li>
             <li class="fragment">ViewEngine SPI</li>
             <li class="fragment">HTML/JS Encoding/Escaping</li>
@@ -1257,87 +1231,34 @@ public class TweetController {
         </section>
 
         <section>
-          <h1>Vollständiges Beispiel</h1>
-          <a href="https://github.com/chkal/todo-mvc/" style="font-size: 160%;">
-            https://github.com/chkal/todo-mvc/
-          </a>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Kleine Applikation
-              * Zeigt alle Konzepte / APIs
-              * -> TODOs
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h1>MVC 1.0 TODO</h1>
-          <ul style="font-size: 140%;">
-            <li class="fragment">Internationalisierung / Lokalisierung</li>
-            <li class="fragment">Typsicheres Erstellen von URLs</li>
-            <li class="fragment">...</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * I18N
-                * Zahlenformat / Dateformat
-              * URLs
-                * Bisher nur manuell / JAX-RS
-            </script>
-          </aside>
-        </section>
-
-        <section>
           <h1>Zeitplan</h1>
           <ul>
-            <li class="fragment highlight-green">Q3 2014 Expert Group formed</li>
-            <li class="fragment highlight-green">Q1 2015 Early Draft</li>
-            <li class="fragment highlight-green">Q4 2015 Early Draft 2</li>
-            <li class="fragment highlight-blue">Q1 2016 Public Review</li>
-            <li class="fragment highlight-blue">Q3 2016 Proposed Final Draft</li>
-            <li class="fragment highlight-blue">H1 2017 Final Release</li>
+            <li><span style="color: green">&#9745;</span> Q3 2014 Expert Group formed</li>
+            <li><span style="color: green">&#9745;</span> Q1 2015 Early Draft</li>
+            <li><span style="color: green">&#9745;</span> Q4 2015 Early Draft 2</li>
+            <li><span style="color: green">&#9745;</span> Q1 2018 Public Review</li>
+            <li><span style="color: green">&#9745;</span> Q4 2018 Proposed Final Draft</li>
+            <li><span style="color: red">&#9744;</span> Q2 2019 Final Release</li>
           </ul>
         </section>
 
         <section>
+          <img src="images/jakartaee.png" alt="img" width="900" class="invertible"/>
+        </section>
+        
+        <section>
           <h1>Feedback erwünscht</h1>
-          <table style="font-size: 100%;">
-            <tr>
-              <td>Mailinglist</td>
-              <td>
-                <a href="https://java.net/projects/mvc-spec/lists">
-                  https://java.net/projects/mvc-spec/lists
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>JIRA</td>
-              <td>
-                <a href="http://java.net/jira/browse/MVC_SPEC">
-                  http://java.net/jira/browse/MVC_SPEC
-                </a>
-              </td>
-            </tr>
-            <tr>
-              <td>Ozark (RI)</td>
-              <td>
-                <a href="https://ozark.java.net/">
-                  https://ozark.java.net/
-                </a>
-              </td>
-            </tr>
-          </table>
+          <h2>
+            <a href="https://www.mvc-spec.org/">https://www.mvc-spec.org/</a>
+          </h2>
         </section>
 
         <section>
           <h1>Danke!</h1>
           <h2>Fragen?</h2>
-          <div class="mono" style="margin-top: 10%;">
-            <a href="https://github.com/chkal/wjax15-mvc">
-              https://github.com/chkal/wjax15-mvc
-            </a>
-            <a href="https://github.com/chkal/todo-mvc">
-              https://github.com/chkal/todo-mvc
+          <div class="mono" style="margin-top: 5%;">
+            <a href="https://www.mvc-spec.org/">
+              https://www.mvc-spec.org/
             </a>
           </div>
           <div style="margin-top: 5%;">

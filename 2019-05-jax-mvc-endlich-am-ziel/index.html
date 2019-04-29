@@ -220,6 +220,89 @@
         </section>
 
         <section>
+          <h3>JSR 371</h3>
+          <img src="images/jsr-start-highlight.png" height="550" alt="img" />
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Oracle erstellte JSR 371 (2014)
+                * Java Community Process
+                * Ich bin beigetreten in 2015
+              * 2014 + 2015 erfolgreich
+                * Viel Fortschritt: EDR1 + EDR2
+              * Aber dann -> Schlechte Nachrichten
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3>JavaOne 2016</h3>
+          <img src="images/javaone-slide-highlight.png" height="550" alt="img" />
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * News: Java One 2016
+              * Oracles Plan für Java EE 8
+                * Neue Funktionen
+                * Funktionen gestrichen
+              * Schlechte Argumente
+                * Nicht alles ist ein Microservice
+                * Wie brauchen Frontends
+              * Die Community wollte weiterhin MVC
+                * Ivar und ich übernehmen
+              * => Spätes 2016: Transfer ballot            
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Oracle &#8594; Community</h3>
+          <img src="images/jcp-transfer.png" height="550" alt="img" />
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Spätes 2016/Frühes 2017
+              * Übertragung der Spec und Sourcen
+              * Mit Untersützung des EC
+              * Die Community hat übernommen
+              * => Und was passierte dann?
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Was passierte dann?</h3>
+          <ul>
+            <li class="fragment">Apache License 2.0</li>
+            <li class="fragment">Neue Infrastruktur (GitHub, CI, Webseite)</li>
+            <li class="fragment">Arbeit an Referenzimplementierung</li>
+            <li class="fragment">Erstellung des TCK</li>
+            <li class="fragment">
+              Java Community Process:
+              <ul>
+                <li>Public Review (PR)</li>
+                <li>Proposed Final Draft (PFD)</li>
+              </ul>
+            </li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wichtige Änderungen (2017-2018)
+
+              * Neue Lizenz
+              * Apache 2 → Sehr offen
+              * Migration der Infra.
+              *   Java.net Shutdown
+              *   Git, Issues, Website
+              * Reference implementation
+              *   Untersützung anderer JAX-RS Impl.
+              *   Cleanup + Enhacements
+              * TCK
+              *   0 → 100%
+              *   Vollständing Open-Source
+              
+            </script>
+          </aside>
+        </section>
+
+        <section>
           <h1>MVC 1.0</h1>
           <!--
           <h1 class="fragment" style="color: red; font-size: 300%;">&#9829;</h1>
@@ -268,29 +351,16 @@
         </section>
 
         <section>
-          <h1>JAX-RS Fakten</h1>
-          <ul>
-            <li class="fragment">"Java API for RESTful Web Services"</li>
-            <li class="fragment">Erstes Release 2008</li>
-            <li class="fragment">Seit 1.1 Bestandteil von Java EE 6</li>
-            <li class="fragment">JAX-RS 2.1 -> JSR 370 -> Java EE 8</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * -> Einführung mit Code!
-            </script>
-          </aside>
-        </section>
-
-        <section>
           <h2>JAX-RS Beispiel</h2>
           <pre style="width: 100%; font-size: 0.65em;"><code class="java" data-trim>
 @Path("/hello")
+@Produces("application/json")
 public class HelloResource {
 
   @GET
-  public String greet() {
-    return "Hello world";
+  public JsonObject greet() {
+    return Json.createObjectBuilder()
+               .add("message", "Hello JAX-RS!");
   }
 
 }
@@ -308,11 +378,14 @@ public class HelloResource {
           <h2>JAX-RS Beispiel</h2>
           <pre style="width: 100%; font-size: 0.65em;"><code class="java" data-trim>
 @Path("/hello")
+@Produces("application/json")
 public class HelloResource {
 
   @GET
-  public String greet( @QueryParam("name") String name ) {
-    return "Hello " + name;
+  @Path("/{name}")
+  public JsonObject greet( @PathParam("name") String name ) {
+    return Json.createObjectBuilder()
+               .add("message", "Hello " + name + "!");
   }
 
 }
@@ -795,27 +868,7 @@ public class ThymeleafController {
             </script>
           </aside>
         </section>
-
-        <section>
-          <h2>Einfache Forms</h2>
-          <h4 class="filename">/WEB-INF/views/form.jsp</h4>
-          <pre style="width: 100%; font-size: 0.75em;"><code class="html" data-trim>
-&lt;form action="${mvc.basePath}/form" method="POST">
-
-  Bitte geben Sie Ihren Namen ein:
-  &lt;input type="text" name="name"/>
-
-  &lt;input type="submit" value="Absenden"/>
-
-&lt;/form>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * mvc EL - Utils
-            </script>
-          </aside>
-        </section>
-
+        
         <section>
           <h2>Einfache Forms</h2>
           <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
@@ -853,14 +906,13 @@ public class FormController {
           <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
 public class HelloForm {
 
+  @MvcBinding
   @FormParam("name")
   private String name;
 
+  @MvcBinding
   @FormParam("age")
   private Integer age;
-
-  @FormParam("address")
-  private String address;
 
   /* getter + setter */
 

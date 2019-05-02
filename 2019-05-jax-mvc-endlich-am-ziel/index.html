@@ -68,7 +68,9 @@
                 * Webbasierte Unternehmensanw.
                 * Hinter Firewall
               * Open Source
-              * JSR 371 EG
+              * JSR 371 Lead
+              * GitHub -> Heutige Tätigkeit
+                * MVC + Krazo
             </script>
           </aside>
         </section>
@@ -173,7 +175,7 @@
             <script type="text/template">
               * Verschiedene Ansätze
               * Kein Richtig/Falsch
-              * Versch. Anford.
+              * Versch. Anforderungen
               * Gibt mehr
             </script>
           </aside>
@@ -215,6 +217,8 @@
             <script type="text/template">
               * Einfaces Modell
               * vs. JSF Lifecycle
+              * Weil Bedarf:
+                * Oracle started JSR 371
             </script>
           </aside>
         </section>
@@ -226,7 +230,7 @@
             <script type="text/template">
               * Oracle erstellte JSR 371 (2014)
                 * Java Community Process
-                * Ich bin beigetreten in 2015
+                * Beigetreten in 2014
               * 2014 + 2015 erfolgreich
                 * Viel Fortschritt: EDR1 + EDR2
               * Aber dann -> Schlechte Nachrichten
@@ -248,7 +252,7 @@
                 * Wie brauchen Frontends
               * Die Community wollte weiterhin MVC
                 * Ivar und ich übernehmen
-              * => Spätes 2016: Transfer ballot            
+              * => Late 2016: Transfer ballot            
             </script>
           </aside>
         </section>
@@ -258,7 +262,7 @@
           <img src="images/jcp-transfer.png" height="550" alt="img" />
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Spätes 2016/Frühes 2017
+              * Late 2016/Frühes 2017
               * Übertragung der Spec und Sourcen
               * Mit Untersützung des EC
               * Die Community hat übernommen
@@ -285,19 +289,16 @@
           <aside class="notes" data-markdown>
             <script type="text/template">
               * Wichtige Änderungen (2017-2018)
-
               * Neue Lizenz
-              * Apache 2 → Sehr offen
+                * Apache 2 → Sehr offen
               * Migration der Infra.
-              *   Java.net Shutdown
-              *   Git, Issues, Website
+                * Java.net Shutdown
+                * Git, Issues, Website
               * Reference implementation
-              *   Untersützung anderer JAX-RS Impl.
-              *   Cleanup + Enhacements
+                * Untersützung anderer JAX-RS Impl.
+                * Cleanup + Enhacements
               * TCK
-              *   0 → 100%
-              *   Vollständing Open-Source
-              
+                * Vollständing Open-Source
             </script>
           </aside>
         </section>
@@ -662,7 +663,7 @@ public class HelloController {
           <h2>JSP als View Technologie</h2>
           <pre style="width: 100%; font-size: 0.6em;"><code class="java" data-trim>
 models.put( "messages", Arrays.asList(
-  "Hello W-JAX 2015",
+  "Hello JAX 2019",
   "MVC 1.0 rocks"
 ) );
           </code></pre>
@@ -867,7 +868,7 @@ public class ThymeleafController {
               * Standard HTML Form
               * Nichts besonders
               * Beliebig **JS Libs** einbinden
-              * -> Abs. Path
+              * -> Form Bean
             </script>
           </aside>
         </section>
@@ -891,8 +892,9 @@ public class HelloForm {
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-              * Eine **Klasse**
+              * Eine **Klasse** pro Form
               * @Form an **Feldern**
+              * `@MvcBinding` -> Später
               * => Controller
             </script>
           </aside>
@@ -920,10 +922,9 @@ public class FormController {
           </code></pre>
           <aside class="notes" data-markdown>
             <script type="text/template">
-
               * Standard, außer:
-              * **@POST**
-              * **@BeanParam**
+              *   **@POST**
+              *   **@BeanParam**
               * Sehr einfach, oder?
               * Also: Forms einfach!
               * => **Validierung**
@@ -1100,8 +1101,8 @@ public class FormController {
         </section>
 
         <section>
-          <h1>Page Token Pattern</h1>
-          <ul style="font-size: 140%;">
+          <h2>Page Token Pattern</h2>
+          <ul style="font-size: 100%;">
             <li class="fragment">Server erstellt geheimes Token</li>
             <li class="fragment">Token wird in Hidden-Field geschrieben</li>
             <li class="fragment">Prüfung des Token bei Submit</li>
@@ -1116,7 +1117,7 @@ public class FormController {
         </section>
 
         <section>
-          <h1>MVC 1.0 CSRF Modes</h1>
+          <h2>MVC 1.0 CSRF Modes</h2>
           <table>
             <tr class="fragment">
               <td>

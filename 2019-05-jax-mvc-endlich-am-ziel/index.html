@@ -1058,12 +1058,12 @@ public class FormController {
 
         <section>
           <h2>CSRF Beispiel</h2>
-          <h4 class="filename">https://www.example.com/tweet</h4>
+          <h4 class="filename">https://www.example.com/send</h4>
           <pre style="width: 100%; font-size: 0.7em;"><code class="html" data-trim>
-&lt;form action="/tweet" method="POST">
+&lt;form action="/send" method="POST">
 
   Bitte geben Sie einen Text ein:
-  &lt;input type="text" name="status"/>
+  &lt;input type="text" name="msg"/>
 
   &lt;input type="submit" value="Absenden"/>
 
@@ -1083,9 +1083,9 @@ public class FormController {
           <h4 class="filename">http://www.hacked.com/</h4>
           <pre style="width: 100%; font-size: 0.7em;" class="fragment"><code class="html" data-trim>
 &lt;form id="form" method="POST"
-      action="https://www.example.com/tweet"
+      action="https://www.example.com/send"
       style="display: none;">
-  &lt;input type="text" name="status"
+  &lt;input type="text" name="msg"
          value="PHP ist die beste Sprache der Welt!"/>
 &lt;/form>
           </code></pre>
@@ -1165,14 +1165,14 @@ public class FormController {
         <section>
           <h2>CSRF Beispiel</h2>
           <pre style="width: 100%; font-size: 0.7em;"><code class="html" data-trim>
-&lt;form action="/tweet" method="POST">
+&lt;form action="/send" method="POST">
 
   &lt;!-- CSRF Page Token -->
   &lt;input type="hidden" name="${mvc.csrf.name}"
       value="${mvc.csrf.token}"/>
 
   Bitte geben Sie einen Text ein:
-  &lt;input type="text" name="status"/>
+  &lt;input type="text" name="msg"/>
 
   &lt;input type="submit" value="Absenden"/>
 
@@ -1192,14 +1192,14 @@ public class FormController {
           <h2>Prüfung mit @CsrfProtected</h2>
           <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
 @Controller
-@Path("/tweet")
-public class TweetController {
+@Path("/send")
+public class MessageController {
 
   /* ... */
 
   @POST
   @CsrfProtected
-  public String post( @FormParam("status") String s ) {
+  public String post( @FormParam("msg") String msg ) {
 
     /* ... */
 

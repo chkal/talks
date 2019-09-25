@@ -1,0 +1,1316 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>MVC 1.0 - Endlich am Ziel</title>
+
+    <meta name="description" content="MVC 1.0 - Endlich am Ziel">
+    <meta name="author" content="Christian Kaltepoth">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="custom/custom.css">
+
+    <!--
+    <link rel="stylesheet" href="custom/invert.css">
+    -->
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!--
+    <link rel="stylesheet" href="custom/github.min.css">
+    -->
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <section>
+          <h1>MVC 1.0</h1>
+          <h2>Endlich am Ziel</h2>
+          <p>
+            <a href="http://blog.kaltepoth.de">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </p>
+        </section>
+
+        <section>
+          <h1>MVC 1.0</h1>
+          <h2><s style="color: red;">Endlich</s> Fast am Ziel</h2>
+          <p>
+            <a href="http://blog.kaltepoth.de">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </p>
+        </section>
+
+        <section>
+          <h3>Über mich...</h3>
+          <img src="images/github-profile.png" height="550" alt="img" />
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ingenit
+                * Dortmund
+                * Webbasierte Unternehmensanw.
+                * Hinter Firewall
+              * Open Source
+              * JSR 371 Lead (2017)
+              * GitHub -> Heutige Tätigkeit
+                * MVC + Krazo
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Warum</h1>
+          <h1>MVC 1.0?</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Warum?
+              * MVC -> Java EE
+              * Java EE -> JSF!
+              * -
+              * Anfang 2014 (5j)
+              * Große Umfragen
+              * ->
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Java EE 8 Community Survey</h2>
+          <!--
+          <img src="images/community_survey_no_header.png" alt="img" height="500"/>
+          -->
+          <img src="images/community_survey_single.png" alt="img" width="900" />
+          <div class="reference-center">
+            <a href="https://java.net/downloads/javaee-spec/JavaEE8_Community_Survey_Results.pdf">
+              https://java.net/downloads/javaee-spec/JavaEE8_Community_Survey_Results.pdf
+            </a>
+          </div>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Anfang 2014
+              * 4.500 Teilnehmer
+              * -> Bleibt die Frage...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>JavaServer Faces</h1>
+          <h1>vs.</h1>
+          <h1>MVC 1.0</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Meinungen
+                * "Und JSF? Stirbt?"
+                * "Warum 2 Frameworks?"
+                * "JSF ist auch MVC!"
+              * Ed Burns Blog
+                * Zwei Klassen
+                * -> JSF = Component Oriented
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>JavaServer Faces</h1>
+          <h1>=</h1>
+          <h1>Component Oriented</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wicket, GWT, Vaadin, ...
+              * Idee:
+                * Wiederverw. Komponenten
+                * JSF -> Details (Req/Resp, Rend)
+                * Bsp: Paging Table
+              * Pro/Con
+                * (+) Rapid Development
+                * (+) Versteckt tech Details
+                * (-) Weniger Kontrolle
+                * (-) Integration JS / CSS
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>MVC 1.0</h1>
+          <h1>=</h1>
+          <h1>Action Oriented</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Spring MVC, Struts, Grails, Spark, Rails/Express...
+              * Idee:
+                * Request/Response im Fokus
+                * Leichtgew. / wenig Abstrk.
+              * Pro/Con
+                * Volle Kontrolle
+                * Weniger Komfort
+                  * Beispiel JSF Resources
+              * -> Zwei Ansätze
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Component Oriented</h1>
+          <h1>vs.</h1>
+          <h1>Action Oriented</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Verschiedene Ansätze
+              * Kein Richtig/Falsch
+              * Versch. Anforderungen
+              * Gibt mehr
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Das MVC</h1>
+          <h1>Entwurfsmuster</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Jedem Bekannt?
+                * **Frage**
+              * 35j -> 1979 Smalltalk
+              * Viele Variationen:
+                * MVP, MVVM, MVW
+              * -> Beschreibung im Web-Kontext
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/mvc1.png" alt="img" height="600" class="invertible"/>
+        </section>
+        <section>
+          <img src="images/mvc2.png" alt="img" height="600" class="invertible"/>
+        </section>
+        <section>
+          <img src="images/mvc3.png" alt="img" height="600" class="invertible"/>
+        </section>
+        <section>
+          <img src="images/mvc4.png" alt="img" height="600" class="invertible"/>
+        </section>
+        <section>
+          <img src="images/mvc5.png" alt="img" height="600" class="invertible"/>
+        </section>
+        <section>
+          <img src="images/mvc.png" alt="img" height="600" class="invertible"/>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Einfaces Modell
+              * vs. JSF Lifecycle
+              * Weil Bedarf:
+                * Oracle started JSR 371
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3>JSR 371</h3>
+          <img src="images/jsr-start-highlight.png" height="550" alt="img" />
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Oracle erstellte JSR 371 (2014)
+                * Java Community Process
+                * Beigetreten in 2014
+              * 2014 + 2015 erfolgreich
+                * Viel Fortschritt: EDR1 + EDR2
+              * Aber dann -> Schlechte Nachrichten
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3>JavaOne 2016</h3>
+          <img src="images/javaone-slide-highlight.png" height="550" alt="img" />
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * News: Java One 2016
+              * Oracles Plan für Java EE 8
+                * Neue Funktionen
+                * Funktionen gestrichen
+              * Schlechte Argumente
+                * Nicht alles ist ein Microservice
+                * Wie brauchen Frontends
+              * Die Community wollte weiterhin MVC
+                * Ivar und ich übernehmen
+              * => Late 2016: Transfer ballot            
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Oracle &#8594; Community</h3>
+          <img src="images/jcp-transfer.png" height="550" alt="img" />
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Late 2016/Frühes 2017
+              * Übertragung der Spec und Sourcen
+              * Mit Untersützung des EC
+              * Die Community hat übernommen
+              * => Und was passierte dann?
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h3>Was passierte dann?</h3>
+          <ul>
+            <li class="fragment">Apache License 2.0</li>
+            <li class="fragment">Neue Infrastruktur (GitHub, CI, Webseite)</li>
+            <li class="fragment">Arbeit an Referenzimplementierung</li>
+            <li class="fragment">Erstellung des TCK</li>
+            <li class="fragment">
+              Java Community Process:
+              <ul>
+                <li>Public Review (PR)</li>
+                <li>Proposed Final Draft (PFD)</li>
+              </ul>
+            </li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wichtige Änderungen (2017-2018)
+              * Neue Lizenz
+                * Apache 2 → Sehr offen
+              * Migration der Infra.
+                * Java.net Shutdown
+                * Git, Issues, Website
+              * Reference implementation
+                * Untersützung anderer JAX-RS Impl.
+              * TCK
+              * JCP Phasen
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>MVC 1.0</h1>
+          <!--
+          <h1 class="fragment" style="color: red; font-size: 300%;">&#9829;</h1>
+        -->
+          <h2>basiert auf</h2>
+          <h1>Java EE 8</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Warum betont?
+              * Kein Rad neu erfinden
+              * Nutzt Java EE Technologien
+              * -> Abhängigkeiten
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>MVC im Kontext</h2>
+          <img src="images/dependencies.png" alt="img" height="400" class="invertible"/>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Servlet
+                * Grundlage für Web
+              * JAX-RS
+                * Routing
+                * Binding
+              * CDI
+                * Komponentenmodell
+              * Bean Validation
+                * Validierung
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>JAX-RS</h1>
+          <h2 class="fragment">(in &lt; 3 Minuten)</h2>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * JAX-RS
+                * Wesentlicher Bestandteil
+              * **Frage:** JAX-RS Erfahrung
+              * -> Kurzeinführung in 3 Minuten
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>JAX-RS Beispiel</h2>
+          <pre style="width: 100%; font-size: 0.65em;"><code class="java" data-trim>
+@Path("/hello")
+@Produces("application/json")
+public class HelloResource {
+
+  @GET
+  public JsonObject greet() {
+    return Json.createObjectBuilder()
+               .add("message", "Hello JAX-RS!");
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * @Path Routing
+              * @GET HTTP Methods
+              * Return -> Body
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>JAX-RS Beispiel</h2>
+          <pre style="width: 100%; font-size: 0.65em;"><code class="java" data-trim>
+@Path("/hello")
+@Produces("application/json")
+public class HelloResource {
+
+  @GET
+  @Path("/{name}")
+  public JsonObject greet( @PathParam("name") String name ) {
+    return Json.createObjectBuilder()
+               .add("message", "Hello " + name + "!");
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Auch:
+                * Form
+                * Query
+                * Header, etc
+              * Fokus: APIs
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Hello World</h1>
+          <h2>mit</h2>
+          <h1>MVC 1.0</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Klassisches Beispiel
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Controller</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="java" data-trim>
+@Controller
+@Path("/hello")
+public class HelloController {
+
+  @GET
+  public String render() {
+    return "helloworld.jsp";
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Ähnlich zu JAX-RS
+              * Änderungen:
+                * **@Controller** ändert Verhalten
+                * **Rückgabe** jetzt View Name
+              * -> View
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>View</h2>
+          <h4 class="filename">/WEB-INF/views/helloworld.jsp</h4>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="html" data-trim>
+&lt;!DOCTYPE html>
+&lt;html>
+  &lt;head>
+    &lt;title>MVC Demo&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;h1>Hello world&lt;/h1>
+  &lt;/body>
+&lt;/html>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Kaum als JSP zu erkennen
+              * **Standardpfad:** /WEB-INF/views
+              * Hier statisch
+              * -> View via return, oder...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Controller</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="java" data-trim>
+@Controller
+@Path("/hello")
+public class HelloController {
+
+  @GET
+  @View("helloworld.jsp")
+  public void render() {
+    // ...
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * @View Annotation
+              * **Komplexe** Controller
+              * Falls mehreren return points
+              * Auch auf **Klasse**
+              * -> Keine Variablen Anteile
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Das Modell</h1>
+          <ul style="font-size: 140%;">
+            <li class="fragment"><tt>javax.mvc.Models</tt></li>
+            <li class="fragment">Basierend auf CDI</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher fehlt: Model
+              * **Daten -> View**
+              * 2 Möglichkeiten
+                * MVC **Models** Klasse
+                * **CDI** Models
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>javax.mvc.Models</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="java" data-trim>
+@Controller
+@Path("/hello")
+public class HelloController {
+
+  @Inject
+  private Models models;
+
+  @GET
+  public String greet() {
+    models.put( "message", "Hello world!" );
+    return "helloworld.jsp";
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * @Inject Models
+              * Wie **Map**
+              * -> Ausgabe in View
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>javax.mvc.Models</h2>
+          <h4 class="filename">/WEB-INF/views/helloworld.jsp</h4>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="html" data-trim>
+&lt;!DOCTYPE html>
+&lt;html>
+  &lt;head>
+    &lt;title>MVC Demo&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;h1>${message}&lt;/h1>
+  &lt;/body>
+&lt;/html>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * **Einfach/praktisch**
+              * Daten **für View**
+              * Probleme
+                * (-) In alle Controller einfügen
+              * -> Umgehen mit...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>CDI Models</h2>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
+@Named
+@RequestScoped
+public class Greeting {
+
+  private String message;
+
+  public String getMessage() {
+    return message;
+  }
+
+  public void setMessage( String message ) {
+    this.message = message;
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * **Frage:** Annotations bekannt?
+                * Benanntes Bean
+                * Instanz pro Request
+              * -> @Inject in Controller
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>CDI Models</h2>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
+@Controller
+@Path("/hello")
+public class HelloController {
+
+  @Inject
+  private Greeting greeting;
+
+  @GET
+  public String greet() {
+    greeting.setMessage( "Hello world!" );
+    return "helloworld.jsp";
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * @Inject nutzen
+              * Bedienen der API
+              * -> View
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>CDI Models</h2>
+          <h4 class="filename">/WEB-INF/views/helloworld.jsp</h4>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="html" data-trim>
+&lt;!DOCTYPE html>
+&lt;html>
+  &lt;head>
+    &lt;title>MVC Demo&lt;/title>
+  &lt;/head>
+  &lt;body>
+    &lt;h1>${greeting.message}&lt;/h1>
+  &lt;/body>
+&lt;/html>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Zugriff
+                * Bean / Property
+                * Komplexe Pfade
+              * Vorteil:
+                * **Kapselung** von Präs. Aufgaben
+                * **Wiederverwendbarkeit**
+              * -> Views...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Views in MVC 1.0</h1>
+          <ul style="font-size: 160%;">
+            <li class="fragment">JavaServer Pages</li>
+            <li class="fragment">Facelets</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Technologien
+                * **JSP**
+                  * 2000 / 15j
+                  * Last Update: 2013
+                * **Facelets**
+                  * Bekannt aus JSF
+              * -> JSP funktioniert gut...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>JSP als View Technologie</h2>
+          <pre style="width: 100%; font-size: 0.6em;"><code class="java" data-trim>
+models.put( "messages", Arrays.asList(
+  "Hello JCON 2019",
+  "MVC 1.0 rocks"
+) );
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.6em;"><code class="html" data-trim>
+&lt;%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+&lt;c:if test="${not empty messages}">
+  &lt;ul>
+    &lt;c:forEach var="message" items="${messages}">
+      &lt;li>${message}&lt;/li>
+    &lt;/c:forEach>
+  &lt;/ul>
+&lt;/c:if>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Rendering **flexibel**
+              * DO:
+                * **EL / Tag-Files**
+              * DON'T
+                * Skriptlets
+              * Pro:
+                * Tooling / **Stabilität**
+              * Contra:
+                * **Moderen Features** fehlen!?!
+                * -> ...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>ViewEngine SPI</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Eigene Template Engines
+              * Einfach zu bedienen
+              * Würde jetzt zu weit gehen..
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Custom ViewEngines</h1>
+          <table style="font-size: 120%;">
+            <tr>
+              <td>
+                <ul>
+                  <li>Thymeleaf</li>
+                  <li>FreeMarker</li>
+                  <li>Velocity</li>
+                  <li>Handlebars</li>
+                  <li>Mustache</li>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <li>StringTemplate</li>
+                  <li>Jade</li>
+                  <li>AsciiDoc</li>
+                  <li>JSR223</li>
+                  <li>React</li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Meist **RI**
+              * **3rd Party**
+              * Reinschauen!
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1><u>Beispiel:</u></h1>
+          <h1>Thymeleaf</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * **Frage:** Wer kennt Thymeleaf?
+              * Interessante Konzepte
+              * Wie einbinden
+                * **Dependency**
+                * -> **Controller**
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Thymeleaf</h2>
+          <pre style="width: 100%; font-size: 0.6em;"><code class="java" data-trim>
+@Controller
+@Path("/thymeleaf")
+public class ThymeleafController {
+
+  @Inject
+  private Models models;
+
+  @GET
+  public String render() {
+
+    models.put( "messages", Arrays.asList(
+      "Text #1", "Text #2", "Text #3"
+    ) );
+
+    return "thymeleaf.html";
+
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * "html" Extension
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Thymeleaf</h2>
+          <h4 class="filename">/WEB-INF/views/thymeleaf.html</h4>
+          <table>
+            <tr>
+              <td>
+                <pre style="width: 100%; font-size: 0.6em;"><code class="html" data-trim>
+<!-- ... -->
+
+&lt;table>
+  &lt;tr th:each="msg: ${messages}">
+    &lt;td th:text="${msg}">
+      Some text
+    &lt;/td>
+  &lt;/tr>
+&lt;/table>
+
+<!-- ... -->
+
+                </code></pre>
+              </td>
+              <td class="fragment">
+                <pre style="width: 100%; font-size: 0.6em;"><code class="html" data-trim>
+&lt;table>
+  &lt;tr>
+    &lt;td>Text #1&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>Text #2&lt;/td>
+  &lt;/tr>
+  &lt;tr>
+    &lt;td>Text #3&lt;/td>
+  &lt;/tr>
+&lt;/table>
+                </code></pre>
+              </td>
+            </tr>
+          </table>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Template **Attribute**
+              * ->
+              * (+) Preview im Browser
+              * (+) Templates von Designern
+              * View mehr
+                * Templating (!= JSP)
+                * I18N (#)
+                * URLs bauen (@)
+              * Ein **Beispiel** für ViewEngines
+              * => Man hat die Wahl
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Formulare</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher: **Nur Rendering**
+              * **Benutzereingaben**
+              * **wesentlicher Bestandteil**
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Formulare</h2>
+          <h4 class="filename">/WEB-INF/views/form.jsp</h4>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="html" data-trim>
+&lt;form action="./form" method="POST">
+
+  Bitte geben Sie Ihren Namen ein:
+  <input type="text" name="name"/>
+
+  Bitte geben Sie Ihr Alter ein:
+  <input type="text" name="age"/>
+
+  &lt;input type="submit" value="Absenden"/>
+
+&lt;/form>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Standard HTML Form
+              * Nichts besonders
+              * Beliebig **JS Libs** einbinden
+              * -> Form Bean
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Formulare</h2>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
+public class HelloForm {
+
+  @MvcBinding
+  @FormParam("name")
+  private String name;
+
+  @MvcBinding
+  @FormParam("age")
+  private Integer age;
+
+  /* getter + setter */
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Eine **Klasse** pro Form
+              * @Form an **Feldern**
+              * `@MvcBinding` -> Später
+              * => Controller
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Formulare</h2>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
+@Controller
+@Path("/form")
+public class FormController {
+
+  @Inject
+  private Models models;
+
+  @POST
+  public String post( @BeanParam HelloForm form ) {
+
+    models.put( "message", "Hello " + form.getName() );
+    return "form.jsp";
+
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Standard, außer:
+              *   **@POST**
+              *   **@BeanParam**
+              * Sehr einfach, oder?
+              * Also: Forms einfach!
+              * => **Validierung**
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Validation</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Nichts neu erfinden
+              * Nutzung von Java EE Standard
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>JSR 380</h1>
+          <h1>Bean Validation</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * **Frage:** Bekannt?
+              * **Deklarativ** Annotations
+              * => Beispiel
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Validierung</h2>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
+public class HelloForm {
+
+  @MvcBinding
+  @FormParam("name")
+  @Size(min = 2, message = "Geben Sie Ihren Namen ein")
+  private String name;
+
+  @MvcBinding
+  @FormParam("age")
+  @Min(value = 18, message = "Sie müssen 18 Jahre sein")
+  private Integer age;
+
+  /* getter + setter */
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Constraints
+                * Versch. Datentypen
+                * Meldungen
+                * I18N
+              * => Controller
+            </script>
+          </aside>
+        </section>
+
+
+        <section>
+          <h2>Validierung</h2>
+          <pre style="width: 100%; font-size: 0.60em;"><code class="java" data-trim>
+@Controller
+@Path("/form")
+public class FormController {
+
+  @Inject
+  private BindingResult bindingResult;
+
+  @POST
+  public String post( @BeanParam @Valid HelloForm form ) {
+
+    if( bindingResult.isFailed() ) {
+      models.put( "messages", bindingResult.getAllMessages() );
+      return "form.jsp";
+    }
+
+    // Verarbeitung des Forms...
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Neu:
+                * @Inject **BindingResult**
+                * **@Valid** an Parameter
+              * Ohne: 400 Bad Req
+              * Viele Methoden
+                * Messages für Parameter
+                * Details: ConstraintViolation
+              * **Max Flexibilität**
+              * Aber -> **Handarbeit**
+              * -> Security
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Security</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Support eingebaut
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>CSRF</h1>
+          <h2>Cross Site Request Forgery</h2>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * **Frage:** Bekannt?
+              * Details:
+                * Nutzer **angemeldet**
+                * Angreifer -> **Request an App**
+                * Klappt, weil
+                  * Session Cookie
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>CSRF Beispiel</h2>
+          <h4 class="filename">https://www.example.com/send</h4>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="html" data-trim>
+&lt;form action="/send" method="POST">
+
+  Bitte geben Sie einen Text ein:
+  &lt;input type="text" name="msg"/>
+
+  &lt;input type="submit" value="Absenden"/>
+
+&lt;/form>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Twitter Beispiel
+              * Reines Form
+              * -> Angreifer
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>CSRF Beispiel</h2>
+          <h4 class="filename">http://www.hacked.com/</h4>
+          <pre style="width: 100%; font-size: 0.7em;" class="fragment"><code class="html" data-trim>
+&lt;form id="form" method="POST"
+      action="https://www.example.com/send"
+      style="display: none;">
+  &lt;input type="text" name="msg"
+         value="PHP ist die beste Sprache der Welt!"/>
+&lt;/form>
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.7em;" class="fragment"><code class="html" data-trim>
+&lt;a href="javascript:void(0)"
+   onclick="document.getElementById('form').submit();">
+  Gratis iPhone
+&lt;/a>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Seite **preparieren**
+              * Step 1:
+                * **Form** versteckt
+                * **Post** auf App
+              * Step 2:
+                * **Submit** via JavaScript
+              * Bsp: Tomcat Manager App
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Page Token Pattern</h2>
+          <ul style="font-size: 100%;">
+            <li class="fragment">Server erstellt geheimes Token</li>
+            <li class="fragment">Token wird in Hidden-Field geschrieben</li>
+            <li class="fragment">Prüfung des Token bei Submit</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ...
+              * **Out-of-the-box Support**
+              * -> Modes
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>MVC 1.0 CSRF Modes</h2>
+          <table>
+            <tr class="fragment">
+              <td>
+                <strong>OFF</strong>
+              </td>
+              <td>
+                Kein Prüfung
+              </td>
+            </tr>
+            <tr class="fragment">
+              <td>
+                <strong>EXPLICIT</strong>
+              </td>
+              <td>
+                Prüfung des Tokens mit @CsrfProtected
+              </td>
+            </tr>
+            <tr class="fragment">
+              <td>
+                <strong>IMPLICIT</strong>
+              </td>
+              <td>
+                Prüfung bei jedem POST-Request
+              </td>
+            </tr>
+          </table>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ...
+              * Wie nutzen?
+                * JAX-RS App Klasse
+                * **Einbau in Form**
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>CSRF Beispiel</h2>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="html" data-trim>
+&lt;form action="/send" method="POST">
+
+  &lt;!-- CSRF Page Token -->
+  &lt;input type="hidden" name="${mvc.csrf.name}"
+      value="${mvc.csrf.token}"/>
+
+  Bitte geben Sie einen Text ein:
+  &lt;input type="text" name="msg"/>
+
+  &lt;input type="submit" value="Absenden"/>
+
+&lt;/form>
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Input Hidden
+              * Bei **EXPLICIT/IMPLICIT**
+              * Zugriff **über "mvc"**
+              * -> **Controller**
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Prüfung mit @CsrfProtected</h2>
+          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
+@Controller
+@Path("/send")
+public class MessageController {
+
+  /* ... */
+
+  @POST
+  @CsrfProtected
+  public String post( @FormParam("msg") String msg ) {
+
+    /* ... */
+
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bei **EXPLICIT** via **@CsrfProtected**
+              * Bei **IMPLICIT** automatisch
+              * Fehler = 403 Forbidden
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Empfehlung</h1>
+          <h2 class="fragment">IMPLICIT verwenden!</h2>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Lieber bei Entwicklung Fehler
+              * als Sicherheitslücken
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>MVC kann mehr...</h1>
+          <ul style="font-size: 140%;">
+            <li class="fragment">Einfache Redirects aus Controller</li>
+            <li class="fragment">Internationalisierung / Lokalisierung</li>
+            <li class="fragment">CDI Scope: @RedirectScoped</li>
+            <li class="fragment">CDI Events</li>
+            <li class="fragment">ViewEngine SPI</li>
+            <li class="fragment">HTML/JS Encoding/Escaping</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Zeitplan</h1>
+          <ul>
+            <li><span style="color: green">&#9745;</span> Q3 2014 Expert Group formed</li>
+            <li><span style="color: green">&#9745;</span> Q1 2015 Early Draft</li>
+            <li><span style="color: green">&#9745;</span> Q4 2015 Early Draft 2</li>
+            <li><span style="color: green">&#9745;</span> Q1 2018 Public Review</li>
+            <li><span style="color: green">&#9745;</span> Q4 2018 Proposed Final Draft</li>
+            <li><span style="color: red">&#9744;</span> Q2 2019 Final Release</li>
+          </ul>
+        </section>
+
+        <section>
+          <img src="images/jakartaee.png" alt="img" width="900" class="invertible"/>
+        </section>
+        
+        <section>
+          <h1>Feedback erwünscht</h1>
+          <h2>
+            <a href="https://www.mvc-spec.org/">https://www.mvc-spec.org/</a>
+          </h2>
+        </section>
+
+        <section>
+          <h1>Danke!</h1>
+          <h2>Fragen?</h2>
+          <div class="mono" style="margin-top: 5%;">
+            <a href="https://www.mvc-spec.org/">
+              https://www.mvc-spec.org/
+            </a>
+          </div>
+          <div style="margin-top: 5%;">
+            <a href="http://blog.kaltepoth.de/">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+        overview: false,
+        slideNumber: true,
+
+        margin: 0.05,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

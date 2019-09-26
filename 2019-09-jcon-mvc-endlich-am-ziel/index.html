@@ -197,9 +197,9 @@
             <script type="text/template">
               * Jedem Bekannt?
                 * **Frage**
-              * 35j -> 1979 Smalltalk
+              * 40j -> 1979 Smalltalk
               * Viele Variationen:
-                * MVP, MVVM, MVW
+                * MVP, MVVM
               * -> Beschreibung im Web-Kontext
             </script>
           </aside>
@@ -242,7 +242,11 @@
                 * Beigetreten in 2014
               * 2014 + 2015 erfolgreich
                 * Viel Fortschritt: EDR1 + EDR2
-              * Aber dann -> Schlechte Nachrichten
+              * Aber dann
+                * Geplant: EE8
+                * Große Stille 2016
+                * JavaOne 2016:
+                * Schlechte Nachrichten
             </script>
           </aside>
         </section>
@@ -348,7 +352,7 @@
 
         <section>
           <h1>JAX-RS</h1>
-          <h2 class="fragment">(in &lt; 3 Minuten)</h2>
+          <h2 class="fragment">(nur eine Slide)</h2>
           <aside class="notes" data-markdown>
             <script type="text/template">
               * JAX-RS
@@ -379,33 +383,6 @@ public class HelloResource {
               * @Path Routing
               * @GET HTTP Methods
               * Return -> Body
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>JAX-RS Beispiel</h2>
-          <pre style="width: 100%; font-size: 0.65em;"><code class="java" data-trim>
-@Path("/hello")
-@Produces("application/json")
-public class HelloResource {
-
-  @GET
-  @Path("/{name}")
-  public JsonObject greet( @PathParam("name") String name ) {
-    return Json.createObjectBuilder()
-               .add("message", "Hello " + name + "!");
-  }
-
-}
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Auch:
-                * Form
-                * Query
-                * Header, etc
-              * Fokus: APIs
             </script>
           </aside>
         </section>
@@ -566,89 +543,6 @@ public class HelloController {
         </section>
 
         <section>
-          <h2>CDI Models</h2>
-          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
-@Named
-@RequestScoped
-public class Greeting {
-
-  private String message;
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage( String message ) {
-    this.message = message;
-  }
-
-}
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * **Frage:** Annotations bekannt?
-                * Benanntes Bean
-                * Instanz pro Request
-              * -> @Inject in Controller
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>CDI Models</h2>
-          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
-@Controller
-@Path("/hello")
-public class HelloController {
-
-  @Inject
-  private Greeting greeting;
-
-  @GET
-  public String greet() {
-    greeting.setMessage( "Hello world!" );
-    return "helloworld.jsp";
-  }
-
-}
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * @Inject nutzen
-              * Bedienen der API
-              * -> View
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>CDI Models</h2>
-          <h4 class="filename">/WEB-INF/views/helloworld.jsp</h4>
-          <pre style="width: 100%; font-size: 0.8em;"><code class="html" data-trim>
-&lt;!DOCTYPE html>
-&lt;html>
-  &lt;head>
-    &lt;title>MVC Demo&lt;/title>
-  &lt;/head>
-  &lt;body>
-    &lt;h1>${greeting.message}&lt;/h1>
-  &lt;/body>
-&lt;/html>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Zugriff
-                * Bean / Property
-                * Komplexe Pfade
-              * Vorteil:
-                * **Kapselung** von Präs. Aufgaben
-                * **Wiederverwendbarkeit**
-              * -> Views...
-            </script>
-          </aside>
-        </section>
-
-        <section>
           <h1>Views in MVC 1.0</h1>
           <ul style="font-size: 160%;">
             <li class="fragment">JavaServer Pages</li>
@@ -658,7 +552,7 @@ public class HelloController {
             <script type="text/template">
               * Technologien
                 * **JSP**
-                  * 2000 / 15j
+                  * 2000 / 19j
                   * Last Update: 2013
                 * **Facelets**
                   * Bekannt aus JSF
@@ -1027,202 +921,6 @@ public class FormController {
                 * Details: ConstraintViolation
               * **Max Flexibilität**
               * Aber -> **Handarbeit**
-              * -> Security
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h1>Security</h1>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Support eingebaut
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h1>CSRF</h1>
-          <h2>Cross Site Request Forgery</h2>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * **Frage:** Bekannt?
-              * Details:
-                * Nutzer **angemeldet**
-                * Angreifer -> **Request an App**
-                * Klappt, weil
-                  * Session Cookie
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>CSRF Beispiel</h2>
-          <h4 class="filename">https://www.example.com/send</h4>
-          <pre style="width: 100%; font-size: 0.7em;"><code class="html" data-trim>
-&lt;form action="/send" method="POST">
-
-  Bitte geben Sie einen Text ein:
-  &lt;input type="text" name="msg"/>
-
-  &lt;input type="submit" value="Absenden"/>
-
-&lt;/form>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Twitter Beispiel
-              * Reines Form
-              * -> Angreifer
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>CSRF Beispiel</h2>
-          <h4 class="filename">http://www.hacked.com/</h4>
-          <pre style="width: 100%; font-size: 0.7em;" class="fragment"><code class="html" data-trim>
-&lt;form id="form" method="POST"
-      action="https://www.example.com/send"
-      style="display: none;">
-  &lt;input type="text" name="msg"
-         value="PHP ist die beste Sprache der Welt!"/>
-&lt;/form>
-          </code></pre>
-          <pre style="width: 100%; font-size: 0.7em;" class="fragment"><code class="html" data-trim>
-&lt;a href="javascript:void(0)"
-   onclick="document.getElementById('form').submit();">
-  Gratis iPhone
-&lt;/a>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Seite **preparieren**
-              * Step 1:
-                * **Form** versteckt
-                * **Post** auf App
-              * Step 2:
-                * **Submit** via JavaScript
-              * Bsp: Tomcat Manager App
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Page Token Pattern</h2>
-          <ul style="font-size: 100%;">
-            <li class="fragment">Server erstellt geheimes Token</li>
-            <li class="fragment">Token wird in Hidden-Field geschrieben</li>
-            <li class="fragment">Prüfung des Token bei Submit</li>
-          </ul>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * ...
-              * **Out-of-the-box Support**
-              * -> Modes
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>MVC 1.0 CSRF Modes</h2>
-          <table>
-            <tr class="fragment">
-              <td>
-                <strong>OFF</strong>
-              </td>
-              <td>
-                Kein Prüfung
-              </td>
-            </tr>
-            <tr class="fragment">
-              <td>
-                <strong>EXPLICIT</strong>
-              </td>
-              <td>
-                Prüfung des Tokens mit @CsrfProtected
-              </td>
-            </tr>
-            <tr class="fragment">
-              <td>
-                <strong>IMPLICIT</strong>
-              </td>
-              <td>
-                Prüfung bei jedem POST-Request
-              </td>
-            </tr>
-          </table>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * ...
-              * Wie nutzen?
-                * JAX-RS App Klasse
-                * **Einbau in Form**
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>CSRF Beispiel</h2>
-          <pre style="width: 100%; font-size: 0.7em;"><code class="html" data-trim>
-&lt;form action="/send" method="POST">
-
-  &lt;!-- CSRF Page Token -->
-  &lt;input type="hidden" name="${mvc.csrf.name}"
-      value="${mvc.csrf.token}"/>
-
-  Bitte geben Sie einen Text ein:
-  &lt;input type="text" name="msg"/>
-
-  &lt;input type="submit" value="Absenden"/>
-
-&lt;/form>
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Input Hidden
-              * Bei **EXPLICIT/IMPLICIT**
-              * Zugriff **über "mvc"**
-              * -> **Controller**
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Prüfung mit @CsrfProtected</h2>
-          <pre style="width: 100%; font-size: 0.7em;"><code class="java" data-trim>
-@Controller
-@Path("/send")
-public class MessageController {
-
-  /* ... */
-
-  @POST
-  @CsrfProtected
-  public String post( @FormParam("msg") String msg ) {
-
-    /* ... */
-
-  }
-
-}
-          </code></pre>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Bei **EXPLICIT** via **@CsrfProtected**
-              * Bei **IMPLICIT** automatisch
-              * Fehler = 403 Forbidden
-            </script>
-          </aside>
-        </section>
-
-        <section>
-          <h1>Empfehlung</h1>
-          <h2 class="fragment">IMPLICIT verwenden!</h2>
-          <aside class="notes" data-markdown>
-            <script type="text/template">
-              * Lieber bei Entwicklung Fehler
-              * als Sicherheitslücken
             </script>
           </aside>
         </section>
@@ -1247,7 +945,7 @@ public class MessageController {
             <li><span style="color: green">&#9745;</span> Q4 2015 Early Draft 2</li>
             <li><span style="color: green">&#9745;</span> Q1 2018 Public Review</li>
             <li><span style="color: green">&#9745;</span> Q4 2018 Proposed Final Draft</li>
-            <li><span style="color: red">&#9744;</span> Q2 2019 Final Release</li>
+            <li><span style="color: red">&#9744;</span> Q4 2019 Final Release</li>
           </ul>
         </section>
 

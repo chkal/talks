@@ -1,0 +1,1207 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>TypeScript – das bessere JavaScript!?</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="custom/custom.css">
+    <!--
+    <link rel="stylesheet" href="custom/invert.css">
+    -->
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+    <!--
+    <link rel="stylesheet" href="custom/github.min.css">
+    -->
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+        <section>
+          <h1>TypeScript</h1>
+          <h2>Das bessere JavaScript!?</h2>
+          <p>
+            <a href="http://blog.kaltepoth.de">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </p>
+          Slides:
+          <a href="http://bit.ly/wjax16-typescript">
+            http://bit.ly/wjax16-typescript
+          </a>
+        </section>
+
+        <section>
+          <h2>Christian Kaltepoth</h2>
+          <h2>Senior Developer @ ingenit</h2>
+          <p>
+            <a href="mailto:christian@kaltepoth.de">christian@kaltepoth.de</a> / <a href="https://twitter.com/chkal">@chkal</a>
+          </p>
+          <p>
+            <a href="http://blog.kaltepoth.de">http://blog.kaltepoth.de</a>
+          </p>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * ingenit
+              * Dortmund
+              * Webbasierte Unternehmensanw.
+              * Hinter Firewall
+              * Open Source
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h1>Why another JavaScript dialect?</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Warum weitere Sprache?
+              * JavaScript?
+              * Andere Sprachen?
+              * -> Microsoft bewirbt...
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <img src="images/typescript.png" style="width: 100%;"/>
+          <div style="font-size: 50%;">
+            Source:&#160;<a href="http://www.typescriptlang.org/">
+            http://www.typescriptlang.org/
+          </a>
+          </div>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * That scales...
+              * Es:
+                * Scales
+                * Has Types
+              * -> Warum sind Types gut?
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Dynamic typing is weird</h2>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+"3" + 1     // implicit cast to string
+// > "31"
+            
+"3" - 1     // implicit cast to number
+// > 2
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="javascript" data-trim>
+{} + {}     // > "[object Object][object Object]"
+{} + []     // > 0
+[] + []     // > ""
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Merkwürdige Effekte
+              * No1: Klassiker
+              * No2: ???
+              * Außerdem, ohne Typen:
+                * Struktur der Objekte
+                * Refactoring
+              * -> Was TS, Warum hilft es?
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h1>TypeScript</h1>
+          <ul style="font-size: 200%;">
+            <li class="fragment">ECMAScript 2016</li>
+            <li class="fragment">Type system</li>
+            <li class="fragment">Compiles to JavaScript</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * 3 Eigenschaften:
+                * ECMAScript 2016
+                * Typensystem
+                * Compiles to ES5
+              * -> Wie sieht es aus?
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>JavaScript</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var n = 3;
+          </code></pre>
+          <div class="fragment">
+          <h2>TypeScript</h2>
+            <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+let n: number = 3;
+            </code></pre>
+          </div>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Klassische Variable
+                * Keine Typen
+              * TypeScript mit Typen
+                * `let` bekannt?
+                * Compiler kennt Typen
+              * -> Typen sind gut!
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Types are great</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+let n: number = 1;
+// > 1
+            
+n = 2;
+// > 2
+
+n = "foobar";
+// Error: Type 'string' is not assignable 
+//        to type 'number'.
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Viele Vorteile
+                * Korrekte Zuweisung
+                * Korrekte Verwendung
+              * Fehler:
+                * NICHT zur Laufzeit
+                * Compiletime
+              * -> Früh erkennen
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Catch errors early</h2>
+          <img src="images/intellij-error.png" alt="intellij" style="width: 100%;"/>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * IDE Support:
+                * IntelliJ
+                * Eclipse
+                * NetBeans???
+                * WebStorm!!
+                * Visual Studio Code!!
+              * Dev Experience -> Java
+              * -> ....
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Basic Types</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Grundlagen zu Typen
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Basic types</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+// numbers
+let n: number = 42;
+
+// strings
+let s: string = "Foobar";
+
+// booleans
+let b: boolean = true;
+
+// arrays
+let a: number[] = [ 1, 2, 4, 8 ];
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Standard JS Typen
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Enum</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+enum Currency {
+  EUR, USD, JPY, GBP 
+};
+            
+let c: Currency = Currency.EUR;
+            
+c = "FOOBAR";
+// Error: Property 'FOOBAR' does not exist on
+//        type 'typeof Currency'. 
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bekannt aus Java
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Tuple</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+let price: [ number, string ];
+
+price = [ 12.99, "EUR" ];
+// > OK
+  
+price = [ "EUR", 12.99 ];
+// Error: Type '[string, number]' is not 
+//        assignable to type '[number, string]'.
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Vermisst in Java
+              * Spezielles Array
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Any</h2>
+          <pre style="width: 100%; font-size: 0.80em;"><code class="typescript" data-trim>
+let a: any;
+            
+a = "Foobar";
+            
+a = false;
+            
+a = [ 42, "Foobar", true ];
+            
+a = document.getElementById( "foobar" );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wie Object in Java
+              * Hat durchaus Verwendung
+              * -> Type assertions
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Type assertions</h2>
+          <pre style="width: 100%; font-size: 0.80em;" class="fragment"><code class="typescript" data-trim>
+let value: any = "Christian";
+
+(&lt;string&gt;value).substring( 0, 5 );
+// > "Chris"
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.80em;" class="fragment"><code class="typescript" data-trim>
+let value: any = "Christian";
+
+(value as string).substring( 0, 5 );
+// > "Chris"
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Wie Java: Casting
+              * Oft wenn mehr über Typ bekannt ist.
+              * zwei Varianten
+              * -> Type Inference
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Type Inference</h2>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+let n = 3;        // inferred type is 'number'
+         
+n = "foobar";
+// Error: Type 'string' is not assignable 
+//        to type 'number'.
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+let n = null;       // inferred type is 'any'
+if( something ) {
+  n = 42;           // OK
+  n = "foobar";     // OK? :-(
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Typ optional
+              * Variables!
+              * Bei sofortiger Initialisierung
+              * "Spät deklarieren, früh initialisieren"
+              * AAABER:
+              * -> `noImplicitAny`
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>noImplicitAny = true</h2>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+let n = null;           // inferred type is 'any'
+if( something ) {
+  n = 42;
+}
+// Error: Variable 'n' implicitly has an 'any' type.
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+let n: number = null;   // type specified manually
+if( something ) {
+  n = 42;
+}
+// OK
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Fehler bei implizitem `any`
+              * Beispiel #1
+              * Beispiel #2
+              * Für neue Projekte immer setzen!
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Advanced Types</h2>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+let t: string|number;     // union type
+
+t = 42;
+// > OK
+
+t = "foobar";
+// > OK
+
+t = true;
+// Error: Type 'boolean' is not assignable to type 
+//        'string | number'.
+         </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Mächtiges Typensystem
+              * Beispiel Union Typ
+              * Gut für: Selektor|Element|JQuery
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Advanced Types</h2>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+type MyType = string|number;    // type alias
+
+let t: MyType = "foobar";
+         </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+type Mode = "simple" | "advanced";
+
+let mode: Mode = "simple";
+
+mode = "foobar";
+// Error: Type '"foobar"' is not assignable to 
+//        type 'Mode'
+         </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Außerdem "Typ Alias"
+                * Praktisch für Union
+              * String Literal Typ
+                * String mit festen Werten
+              * Weiteres:
+                * Intersection Types
+                * ... Weiteres
+              * -> Functions
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Functions</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Funktionen zentral!
+              * Typisierte Funktionen?
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Typed Functions</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+function formatEuro( value: number ): string {
+  return value.toFixed( 2 ) + "€";
+}
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only current-fragment"><code class="typescript" data-trim>
+formatEuro( 42 );
+// > "42.00€"
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only"><code class="typescript" data-trim>
+
+formatEuro( "foobar" );
+// Error: Argument of type 'string' is not assignable
+//        to parameter of type 'number'
+
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment current-only"><code class="typescript" data-trim>
+let n: number = formatEuro( 42 );
+// Error: Type 'string' is not assignable
+//        to type 'number'
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Typen für Parameter
+              * Und Return Type
+              * Wird korrekt geprüft
+              * ...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Optional Parameters</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+function formatMoney( value: number, 
+                      currency?: string ): string {
+
+  return value.toFixed( 2 ) + ( currency || "€" );
+
+}
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+formatMoney( 42 );
+// > "42.00€"
+
+formatMoney( 42, "$" );
+// > "42.00$"
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Parameter = Pflicht (!= JS)
+              * Optional geht auch
+              * Java: null übergeben
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Default Parameters</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+function formatMoney( value: number, 
+                      currency: string = "€" ): string {
+
+  return value.toFixed( 2 ) + currency;
+
+}
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+formatMoney( 42 );
+// > "42.00€"
+
+formatMoney( 42, "$" );
+// > "42.00$"
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Meist einfacher
+              * Nicht in Java!
+              * Java: Mehrere Methoden :(
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h1>Interfaces</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher primitive Datentypen
+              * Jetzt: Objekte
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Interfaces</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+let money = {
+  amount: 42,
+  currency: "€"
+};
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;" class="fragment"><code class="typescript" data-trim>
+interface Money {
+  amount: number;
+  currency: string;
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Beispiel Objekt
+              * Wie typisieren???
+              * Interface definiert Struktur
+              * -> Verwendung...
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Using Interfaces</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+interface Money {
+  amount: number;
+  currency: string;
+}
+
+let money: Money = {
+  amount: 42,
+  currency: "€"
+};
+
+let amount = money.amount;     // OK
+            
+let currency = money.curency;
+// Error: Property 'curency' does not exist on type
+
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Interface definieren
+              * Variable von diesem Typ
+              * Sicherer Zugriff
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Functions</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+interface Money {
+  amount: number;
+  currency: string;
+  asString: () => string;
+}
+
+let money: Money = {
+  amount: 42,
+  currency: "€",
+  asString: function(): string {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+};
+
+money.asString();     // > 42.00€
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * **Properties -> Funktionen**
+              * Definieren der Signatur
+              * Typisierter Aufruf
+              * -> Anonym, geht auch anders
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Function Types</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+interface AsStringFunc {
+  (): string;
+}
+
+interface Money {
+  amount: number;
+  currency: string;
+  asString: AsStringFunc;
+}
+
+let money: Money = { ... };
+            
+money.asString();     // > 42.00€
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * **Interface beschreibt Funktion**
+              * Verwendung im Interface
+              * Implementierung wie vorher
+              * -> Interface Vererbung
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Extending Interfaces</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="typescript" data-trim>
+interface AsStringFunc {
+  (): string;
+}
+
+interface Printable {
+  asString: AsStringFunc;
+}
+
+interface Money extends Printable {
+  amount: number;
+  currency: string;
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Interfaces können erben
+              * Wie in Java
+              * -> Structural Subtyping
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Structural Subtyping</h2>
+          <pre style="width: 100%; font-size: 0.8em;" class="fragment"><code class="typescript" data-trim>
+interface Foo {
+  value: number;
+}
+
+interface Bar {
+  value: number;
+}
+
+let foo: Foo = {
+  value: 3
+};
+
+let bar: Bar = foo;   // OK
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Eher überraschend 
+              * Interface benennt Struktur
+              * Maßgebend ist aber Struktur
+              * **Beispiel!!!**
+              * -> Klassen
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h1>Classes</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher nur Object Literals
+              * Jetzt Klassen
+              * -> Prototype Beispiel
+            </script>
+          </aside>
+        </section>
+
+
+        <section>
+          <h2>The old way</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+var Money = function ( amount, currency ) {
+  this.amount = amount;
+  this.currency = currency;
+};
+
+Money.prototype.asString = function () {
+  return this.amount.toFixed( 2 ) + this.currency;
+};
+
+var money = new Money( 42, "€" );
+
+money.asString();
+// > 42.00€
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Konstruktur Funktionen, Prototypen
+              * Wer kennt das?
+              * ...
+              * -> ECMAScript 2015 macht es besser
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ECMAScript 2015</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="javascript" data-trim>
+class Money {
+
+  constructor( amount, currency ) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
+  asString() {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+
+let money = new Money( 42, "€" );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Frage: Schon mal gesehen?
+              * Verständlich?
+              * Reines ECMAScript 2015!!!
+              * -> Wie TypeScript
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>TypeScript</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+class Money {
+
+  private amount: number;
+  private currency: string;
+
+  constructor( amount: number, currency: string ) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
+  asString(): string {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Fast genau so, Unterschied:
+                * **Properties** definiert
+                * Typen bei **Konstruktur**
+                * Bei **asString**
+              * Properties: Public by default
+              * -> Read only properties (TS2)
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>Readonly Properties</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+class Money {
+
+  private readonly amount: number;
+  private readonly currency: string;
+
+  constructor( amount: number, currency: string ) {
+    this.amount = amount;
+    this.currency = currency;
+  }
+
+  asString(): string {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Neu in TypeScript 2.0
+              * Final in Java
+              * Syntax Highlight / IDE Support
+              * -
+              * Bekanntes Pattern: Const -> Prop
+              * -> Spezieller Syntax
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Parameter Properties</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+class Money {
+
+  constructor( private amount: number,
+               private currency: string ) {
+    // empty
+  }
+
+  asString(): string {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Keine Properties definiert
+              * Regel: **Schlüsselwort** in Konstruktor
+              * Bekannt aus Ruby
+              * IMO fragwürdig
+              * -> Interfaces
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Implementing Interfaces</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+interface Printable {
+  asString(): string;
+}
+
+class Money implements Printable {
+
+  constructor( private amount: number,
+               private currency: string ) {
+    // nothing here
+  }
+
+  asString(): string {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+}
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Nicht überraschend
+              * Wie in Java
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h2>There is more:</h2>
+          <ul>
+            <li>Inheritance</li>
+            <li>Abstract classes</li>
+            <li>Static properties</li>
+            <li>Visibility modifiers</li>
+            <li>Accessors</li>
+            <li>Generics</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Es gibt viel mehr...
+              * -> Modules
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h1>Modules</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Modulsystem
+              * **Schon lange** in TypeScript
+              * ECMAScript 2015 **nachgezogen**
+              * Seit 1.5 **angeglichen**
+              * -> So sieht es aus
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Export / Import</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// math.ts
+export function max( a: number, b: number ): number {
+  return a > b ? a : b;
+}
+
+export let PI = 3.14156;
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// foobar.ts
+import { max, PI } from "./math.ts";
+
+max(9, 13) === 13;       // > true
+PI === 3.14156;          // > true
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Datei:
+                * Alles private für Modul
+                * Export definiert "public" Teile
+              * Andere Datei:
+                * Import aus erster Datei
+              * -> Alternativer Syntax
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Export / Import</h2>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// math.ts
+export function max( a: number, b: number ): number {
+  return a > b ? a : b;
+}
+
+export let PI = 3.14156;
+          </code></pre>
+          <pre style="width: 100%; font-size: 0.75em;"><code class="typescript" data-trim>
+// foobar.ts
+import * as math from "./math.ts";
+
+math.max(9, 13) === 13   // > true
+math.PI === 3.14156      // > true
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Alles importieren
+              * ...
+              * -> Funktioniert super für Klassen
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Export / Import</h2>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+// money.ts
+export class Money {
+
+  constructor( private amount: number,
+               private currency: string ) {
+  }
+
+  asString(): string {
+    return this.amount.toFixed( 2 ) + this.currency;
+  }
+}          </code></pre>
+          <pre style="width: 100%; font-size: 0.70em;"><code class="typescript" data-trim>
+import { Money } from "./money.ts";
+
+let m = new Money( 42, "€" );
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Fast wie in Java:
+                * Eine Datei pro Klasse
+                * Import in anderen Dateien
+              * Sehr mächtige Art der Strukturierung
+              * -> Weitere ECMAScript Features
+            </script>
+          </aside>
+        </section>
+        
+        <section>
+          <h1>More ES2016 magic</h1>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Bisher TypeScript Features
+              * Wichtige ECMAScript Features
+              * Nicht TypeSpript spezifisch
+              * Aber vielleicht nicht bekannt
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2016 Constants</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+const users = [ "Christian" ];
+
+users.push( "Jim" );
+// > 2
+
+users = [ "Bob" ];
+// Error: Left-hand side of assignment cannot
+//        be a constant or a read-only property.
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * const
+              * Wie `let`
+              * Kein Hosting
+              * Block Scope
+              * Konstante
+              * Java: `final`
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2016 Template Strings</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+let name = "Christian";
+let count = 213;
+
+let message =
+    `Hello ${name}, you have ${count} messages.`;
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+let html =
+    `<h1>Hello ${name}</h1>
+     <p>
+       You have ${count} unread messages
+     </p>`;
+
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Erstellen von Strings
+              * Block 1:
+                * Unterschiede:
+                * Backtick als Delimiter
+                * EL-Ausdrücke in String
+                * -> Besser lesbar
+              * Block 2:
+                * Multiline Strings
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Classic Functions</h2>
+          <pre style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+let numbers = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
+
+numbers.filter( function(n) {
+  return n % 2 !== 0;
+} );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Beispiel: Ungerade Zahlen
+              * Higher Order Functions
+              * Probleme
+              * `function` keyword
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ES2016 Arrow Functions</h2>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+numbers.filter( n => {
+  return n % 2 !== 0;
+} );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+numbers.filter( n => n % 2 !== 0 );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <pre class="fragment" style="width: 100%; font-size: 0.8em;"><code class="javascript" data-trim>
+numbers.filter( n => n % 2 );
+// > [ 1, 3, 5, 7, 9 ]
+          </code></pre>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Gleiches Beispiel
+              * Block #1:
+              * Arrow syntax
+              * Ähnlich Java Lamda
+              * Block #2:
+              * 1 Statement -> Kein {} und ;
+              * Block #3:
+              * Zahl != 0 -> Truthy
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Give it a try</h1>
+        </section>
+        
+        <section>
+          <h2>TypeScript REPL</h2>
+          <img src="images/repl.png" alt="img" style="width: 100%; margin: 0;" />
+          <a href="http://www.typescriptlang.org/play/#src=class%20Greeter%20%7B%0D%0A%0D%0A%20%20greeting%3A%20string%3B%0D%0A%0D%0A%20%20constructor(message%3A%20string)%20%7B%0D%0A%20%20%20%20this.greeting%20%3D%20message%3B%0D%0A%20%20%7D%0D%0A%0D%0A%20%20greet()%20%7B%0D%0A%20%20%20%20return%20%22Hello%2C%20%22%20%2B%20this.greeting%3B%0D%0A%20%20%7D%0D%0A%0D%0A%7D%0D%0A">
+            http://www.typescriptlang.org/play/
+          </a>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Link + Zoom
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Java Integration</h2>
+          <a href="https://github.com/chkal/frontend-boilerplate">
+            https://github.com/chkal/frontend-boilerplate
+          </a>
+          <ul style="padding-top: 1em;">
+            <li class="fragment">Apache Maven</li>
+            <li class="fragment">node.js / npm</li>
+            <li class="fragment">Webpack / TypeScript</li>
+            <li class="fragment">Karma / Jasmine</li>
+          </ul>
+          <aside class="notes" data-markdown>
+            <script type="text/template">
+              * Problem:
+                * Zwei Welten
+                * JavaScript vs Java Tooling
+              * Integation:
+                * Installation von Node
+                * Webpack Module Bundler
+                * Testing
+              * Besonders Feature:
+                * Dev Experience
+            </script>
+          </aside>
+        </section>
+
+        <section>
+          <h1>Thanks!</h1>
+          <h2>Questions?</h2>
+          <div class="mono" style="margin-top: 6%;">
+            <a href="http://bit.ly/wjax16-typescript">
+              http://bit.ly/wjax16-typescript
+            </a>
+            <div class="mono" style="margin-top: 1%;">
+            </div>
+            <a href="https://github.com/chkal/frontend-boilerplate">
+              https://github.com/chkal/frontend-boilerplate
+            </a>
+          </div>
+          <div style="margin-top: 5%;">
+            <a href="http://blog.kaltepoth.de/">Christian Kaltepoth</a> /
+            <a href="http://twitter.com/chkal">@chkal</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        overview: false,
+        slideNumber: true,
+        margin: 0.05,
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
